@@ -73,9 +73,9 @@ alter table coupon comment '优惠券';
 /*==============================================================*/
 create table goods
 (
-   goods_id             goods_id not null comment '商品编号',
-   goods_name           goods_name comment '商品名称',
-   phote_url            photo_url comment '图片路径',
+   goods_id             varchar(32) not null comment '商品编号',
+   goods_name           varchar(64) comment '商品名称',
+   phote_url            varchar(512) comment '图片路径',
    goods_price          int comment '商品价格（单位：分）',
    create_time          datetime comment '创建时间',
    update_time          datetime comment '更新时间',
