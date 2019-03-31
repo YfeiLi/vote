@@ -1,15 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.soar.vote.persistence.mapper.VoteScopeMapper" >
-  <resultMap id="BaseResultMap" type="com.soar.vote.persistence.entity.VoteScope" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soar.vote.persistence.mapper.VoteScopeMapper">
+  <resultMap id="BaseResultMap" type="com.soar.vote.persistence.entity.VoteScope">
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="scope_id" property="scopeId" jdbcType="VARCHAR" />
-    <result column="scope_name" property="scopeName" jdbcType="VARCHAR" />
-    <result column="scope_parent" property="scopeParent" jdbcType="VARCHAR" />
-    <result column="scope_level" property="scopeLevel" jdbcType="SMALLINT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <id column="scope_id" jdbcType="VARCHAR" property="scopeId" />
+    <result column="scope_name" jdbcType="VARCHAR" property="scopeName" />
+    <result column="scope_parent" jdbcType="VARCHAR" property="scopeParent" />
+    <result column="scope_level" jdbcType="SMALLINT" property="scopeLevel" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+    <select id="find" resultType="com.soar.vote.common.dto.response.FindVoteScopeResponseDTO">
+      select
+        a.scope_id as scopeId,
+        a.scope_name as scopeName,
+        b.scope_name as scopeParentName,
+        a.scope_level as scopeLevel,
+        a.description as description,
+        a.create_time as createTime
+      from vote_scope a
+      left join vote_scope b on a.scope_parent = b.scope_id
+      <where>
+        <if test="scopeName != null and scopeName != ''">
+          a.scope_name = #{scopeName}
+        </if>
+        <if test="scopeParent != null and scopeParent != ''">
+          and a.scope_parent = #{scopeParent}
+        </if>
+        <if test="scopeLevel != null">
+          and a.scope_level = #{scopeLevel}
+        </if>
+      </where>
+      order by a.create_time
+    </select>
 </mapper>

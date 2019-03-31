@@ -31,6 +31,11 @@ public class VoteScope {
     private Short scopeLevel;
 
     /**
+     * 详细描述
+     */
+    private String description;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")
@@ -112,6 +117,24 @@ public class VoteScope {
      */
     public void setScopeLevel(Short scopeLevel) {
         this.scopeLevel = scopeLevel;
+    }
+
+    /**
+     * 获取详细描述
+     *
+     * @return description - 详细描述
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * 设置详细描述
+     *
+     * @param description 详细描述
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

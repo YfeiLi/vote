@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>魅嘉丽-投票系统</title>
+    <link rel="stylesheet" href="../plugin/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">魅嘉丽</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item layui-this"><a href="/vote-manager/pages/index.html">投票系统</a></li>
+            <li class="layui-nav-item"><a href="">财务系统</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <!--<img src="http://t.cn/RCzsdCq" class="layui-nav-img">-->
+                    admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">修改密码</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-this">
+                    <a href="agent.html">代理商</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="activity.html">投票活动</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="coupon.html">优惠券</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="goods.html">商品</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="config.html">基本配置</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" style="padding:15px">
+        <!-- 内容主体区域 -->
+        <div class="layui-form">
+            省份：
+            <div class="layui-inline">
+                <select id="scopeParent" name="scopeParent" lay-filter="changeSelect" lay-verify="required" lay-search="">
+                    <option value="">请选择或搜索</option>
+                    <option value="1">广东</option>
+                    <option value="2">辽宁</option>
+                </select>
+            </div>
+            <button id="add_button" class="layui-btn" style="float:right" data-type="reload">添加</button>
+        </div>
+        <script type="text/html" id="bar">
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+        <table id="scopeLists" class="layui-hide" lay-filter="scopeLists"></table>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © com.soar.vote
+    </div>
+</div>
+<script src="../plugin/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('table', function(){
+        var table = layui.table;
+        var form = layui.form;
+        table.render({
+            id: 'scopeLists'
+            ,elem: '#scopeLists'
+            ,url: '/vote-manager/vote/scope'
+            ,height: 'full-180'
+            ,where: {
+                scopeLevel: 2
+            }
+            ,cols: [[
+                {field:'scopeId', title: '编号'}
+                ,{field:'scopeName', title: '代理商名称'}
+                ,{field:'scopeParentName', title: '省份'}
+                ,{field:'description', title: '详细描述（可编辑）', width: 250, edit:'text'}
+                ,{field:'createTime', title: '添加时间',templet: '<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+                ,{fixed: 'right', title:'操作', toolbar: '#bar', width:70}
+            ]]
+            ,request: {
+                pageName: 'pageNum' //页码的参数名称，默认：page
+                ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            }
+            ,parseData: function(res) { //res 即为原始返回的数据
+                return {
+                    "code": 0, //解析接口状态
+                    "msg": "", //解析提示文本
+                    "count": res.total, //解析数据长度
+                    "data": res.list //解析数据列表
+                }
+            }
+            ,page: true
+        });
+        table.on('edit(scopeLists)', function(obj){
+            var value = obj.value //得到修改后的值
+                ,data = obj.data //得到所在行所有键值
+                ,field = obj.field; //得到字段
+            layer.msg('[scopeId: '+ data.scopeId +'] ' + field + ' 字段更改为：'+ value);
+        });
+        var $ = layui.$, active = {
+            reload: function(){
+                var scopeParent = $('#scopeParent');
+
+                //执行重载
+                table.reload('scopeLists', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        scopeParent: scopeParent.val()
+                    }
+                });
+            }
+        };
+
+        form.on('select(changeSelect)',function(data){
+            var type = 'reload';
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</body>
+</html>

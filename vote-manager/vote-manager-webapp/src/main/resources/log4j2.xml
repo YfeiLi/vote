@@ -24,5 +24,8 @@
         <Logger name="org.hibernate" level="WARN" />
         <Logger name="org.springframework" level="WARN" />
 
+        <!--屏蔽sql日志-->
+        <Logger name="com.soar.vote.persistence" level="WARN" />
+
     </Loggers>
 </Configuration>

@@ -12,6 +12,7 @@
         <module>vote-persistence</module>
         <module>vote-manager</module>
         <module>vote-front</module>
+        <module>vote-common</module>
     </modules>
 
     <properties>

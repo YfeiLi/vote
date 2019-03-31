@@ -2,7 +2,7 @@
 基于小程序或h5的投票系统
   
 ## 环境依赖  
-> jdk 11  
+> jdk 8  
 > maven 3  
 > mysql 5.6
 
@@ -14,5 +14,6 @@
 ├── vote-manager                    // 后台管理  
 │   ├── vote-manager-service        // 后台管理业务逻辑层  
 │   └── vote-manager-controller     // 后台管理业务视图交互层  
-└── vote-persistence                // 项目持久层  
+├── vote-persistence                // 项目持久层  
+└── vote-common                     // 项目公共部分  
 </pre>

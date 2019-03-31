@@ -36,10 +36,9 @@
         <table tableName="activity_voter" enableSelectByExample="false"/>
         <table tableName="vote_scope" enableSelectByExample="false"/>
         <table tableName="vote_statistics" enableSelectByExample="false"/>
-        <table tableName="goods" enableSelectByExample="false"/>-->
+        <table tableName="goods" enableSelectByExample="false"/>
         <table tableName="coupon_group" enableSelectByExample="false"/>
-        <table tableName="coupon" enableSelectByExample="false"/>
-
+        <table tableName="coupon" enableSelectByExample="false"/>-->
 
     </context>
 </generatorConfiguration>

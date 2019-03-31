@@ -147,6 +147,7 @@ create table vote_scope
    scope_name           varchar(64) comment '区域名称',
    scope_parent         varchar(32) comment '父区域',
    scope_level          smallint comment '区域等级',
+   description          varchar(1024) comment '详细描述',
    create_time          datetime comment '创建时间',
    update_time          datetime comment '更新时间',
    primary key (scope_id)
