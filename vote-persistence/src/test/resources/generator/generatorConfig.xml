@@ -29,15 +29,15 @@
         <!-- sql占位符，表示所有的表 -->
         <!--<table tableName="%">-->
 
-        <table tableName="voter" enableSelectByExample="false"/>
+        <!--<table tableName="voter" enableSelectByExample="false"/>
         <table tableName="candidate" enableSelectByExample="false"/>
         <table tableName="vote_activity" enableSelectByExample="false"/>
         <table tableName="vote_record" enableSelectByExample="false"/>
         <table tableName="activity_voter" enableSelectByExample="false"/>
-        <table tableName="vote_scope" enableSelectByExample="false"/>
-        <table tableName="vote_statistic" enableSelectByExample="false"/>
-        <table tableName="coupon" enableSelectByExample="false"/>
-        <table tableName="goods" enableSelectByExample="false"/>
+        <table tableName="vote_scope" enableSelectByExample="false"/>-->
+        <table tableName="vote_statistics" enableSelectByExample="false"/>
+        <!--<table tableName="coupon" enableSelectByExample="false"/>
+        <table tableName="goods" enableSelectByExample="false"/>-->
 
 
     </context>

@@ -1,6 +1,18 @@
 server:
-  port: 8081
+  port: 8100
+  servlet:
+    context-path: /vote-manager
 
 spring:
   application:
-    name: vote-manager-webapp
+    name: vote-manager
+  datasource:
+    url: jdbc:mysql://localhost:3306/vote?characterEncoding=utf8
+    username: vote
+    password: vote123
+    driver-class-name: com.mysql.jdbc.Driver
+    dbcp2:
+      min-idle: 5 # 数据库连接池的最小维持连接数
+      initial-size: 5 # 初始化提供的连接数
+      max-total: 5 # 最大的连接数
+      max-wait-millis: 200 # 等待连接获取的最大超时时间

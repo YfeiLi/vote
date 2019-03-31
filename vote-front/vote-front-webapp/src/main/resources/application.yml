@@ -1,6 +1,13 @@
 server:
-  port: 8082
+  port: 8101
+  servlet:
+    context-path: /vote-front
 
 spring:
   application:
-    name: vote-manager-webapp
+    name: vote-front
+  datasource:
+    url: jdbc:mysql://localhost:3306/vote?characterEncoding=utf8
+    username: vote
+    password: vote123
+    driver-class-name: com.mysql.jdbc.Driver

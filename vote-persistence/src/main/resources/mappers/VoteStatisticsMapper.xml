@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soar.vote.persistence.mapper.VoteStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.soar.vote.persistence.entity.VoteStatistics" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="statistics_id" property="statisticsId" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="VARCHAR" />
+    <result column="candidate_id" property="candidateId" jdbcType="VARCHAR" />
+    <result column="vote_count" property="voteCount" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>

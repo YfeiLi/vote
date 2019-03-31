@@ -139,7 +139,7 @@ start() {
     fi
     
     # 启动
-    nohup java -Xbootclasspath/a:./config -jar "$JAR_FILE" spring &>> "$logfile" &
+    nohup java -Xbootclasspath/a:./resources -jar "$JAR_FILE" spring &>> "$logfile" &
 
     # 屏幕输出并写入日志
     local msg="启动 ======> ${JAR_FILE_PATH}"

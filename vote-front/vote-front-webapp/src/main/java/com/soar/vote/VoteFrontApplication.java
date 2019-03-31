@@ -5,10 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * saas平台统一网关
- *
- * @author : xuxuanjie@weconex.com
- * @since : 2019-03-17 22:10
+ * 启动器
  */
 @SpringBootApplication
 @Slf4j

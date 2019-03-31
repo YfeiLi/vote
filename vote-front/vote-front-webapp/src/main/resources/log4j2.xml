@@ -7,9 +7,7 @@
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
             <!--这个都知道是输出日志的格式-->
-            <!--<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level %class{36} TRACE_ID[%X{TRACE_ID}] %L - %msg%xEx%n"/>-->
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level %class{36} TRACE_ID[%X{TRACE_ID}] %L - %msg%xEx%n"/>
-            <!--<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS } %-5level %class{36} %L - %msg%xEx%n"/>-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level %class{36} %L - %msg%xEx%n"/>
         </Console>
     </Appenders>
     <Loggers>
@@ -18,27 +16,13 @@
         </Root>
 
         <!--特定包的输出等级-->
-        <Logger name="io" additivity="false" level="WARN" >
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="tk" additivity="false" level="WARN" >
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="com.alibaba" additivity="false" level="WARN" >
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="org.apache.zookeeper" additivity="false" level="WARN" >
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="org.springframework" additivity="false" level="WARN" >
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="org.apache.commons.beanutils" additivity="false" level="WARN" >
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Logger name="org.apache.http" additivity="false" level="WARN" >
-            <AppenderRef ref="Console"/>
-        </Logger>
+        <Logger name="io" level="WARN" />
+        <Logger name="tk" level="WARN" />
+        <Logger name="com.alibaba" level="WARN" />
+        <Logger name="org.apache" level="WARN" />
+        <Logger name="org.mybatis" level="WARN" />
+        <Logger name="org.hibernate" level="WARN" />
+        <Logger name="org.springframework" level="WARN" />
 
     </Loggers>
 </Configuration>
