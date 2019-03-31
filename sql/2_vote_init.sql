@@ -4,6 +4,8 @@ drop table if exists activity_voter;
 
 drop table if exists coupon;
 
+drop table if exists coupon_group;
+
 drop table if exists goods;
 
 drop table if exists vote_activity;
@@ -56,17 +58,34 @@ alter table activity_voter comment '活动投票人';
 create table coupon
 (
    coupon_id            varchar(32) not null comment '优惠券编号',
-   coupon_name          varchar(64) comment '优惠券名称',
-   coupon_type          smallint comment '优惠券类型（01折扣；02抵扣）',
-   discount_rate        int comment '折扣率（100即免费）',
-   discount_amout       int comment '抵扣金额（单位：分）',
-   goods_id             varchar(32) comment '商品编号',
+   voter_id             varchar(32) comment '投票人编号',
+   coupon_status        smallint comment '优惠券状态',
    create_time          datetime comment '创建时间',
    update_time          datetime comment '更新时间',
    primary key (coupon_id)
 );
 
 alter table coupon comment '优惠券';
+
+/*==============================================================*/
+/* Table: coupon_group                                          */
+/*==============================================================*/
+create table coupon_group
+(
+   coupon_group_id      varchar(32) not null comment '优惠券组编号',
+   coupon_name          varchar(64) comment '优惠券名称',
+   coupon_type          smallint comment '优惠券类型（01折扣；02抵扣）',
+   discount_rate        int comment '折扣率（100即免费）',
+   discount_amout       int comment '抵扣金额（单位：分）',
+   goods_id             varchar(32) comment '商品编号',
+   scope_id             varchar(32) comment '区域编号',
+   scene                smallint comment '领取场景',
+   create_time          datetime comment '创建时间',
+   update_time          datetime comment '更新时间',
+   primary key (coupon_group_id)
+);
+
+alter table coupon_group comment '优惠券组';
 
 /*==============================================================*/
 /* Table: goods                                                 */

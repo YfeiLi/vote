@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soar.vote.persistence.mapper.CouponGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.soar.vote.persistence.entity.CouponGroup" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="coupon_group_id" property="couponGroupId" jdbcType="VARCHAR" />
+    <result column="coupon_name" property="couponName" jdbcType="VARCHAR" />
+    <result column="coupon_type" property="couponType" jdbcType="SMALLINT" />
+    <result column="discount_rate" property="discountRate" jdbcType="INTEGER" />
+    <result column="discount_amout" property="discountAmout" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="scope_id" property="scopeId" jdbcType="VARCHAR" />
+    <result column="scene" property="scene" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>

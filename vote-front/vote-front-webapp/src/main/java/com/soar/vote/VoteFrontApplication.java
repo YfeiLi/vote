@@ -13,7 +13,8 @@ public class VoteFrontApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(VoteFrontApplication.class, args);
-        log.info("投票系统后台管理启动完成！！！");
+        log.info("投票系统-前端应用 启动完成！！！\n" +
+                "========================================================================================================================================================");
     }
 
 }

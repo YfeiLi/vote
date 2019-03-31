@@ -13,34 +13,16 @@ public class Coupon {
     private String couponId;
 
     /**
-     * 优惠券名称
+     * 投票人编号
      */
-    @Column(name = "coupon_name")
-    private String couponName;
+    @Column(name = "voter_id")
+    private String voterId;
 
     /**
-     * 优惠券类型（01折扣；02抵扣）
+     * 优惠券状态
      */
-    @Column(name = "coupon_type")
-    private Short couponType;
-
-    /**
-     * 折扣率（100即免费）
-     */
-    @Column(name = "discount_rate")
-    private Integer discountRate;
-
-    /**
-     * 抵扣金额（单位：分）
-     */
-    @Column(name = "discount_amout")
-    private Integer discountAmout;
-
-    /**
-     * 商品编号
-     */
-    @Column(name = "goods_id")
-    private String goodsId;
+    @Column(name = "coupon_status")
+    private Short couponStatus;
 
     /**
      * 创建时间
@@ -73,93 +55,39 @@ public class Coupon {
     }
 
     /**
-     * 获取优惠券名称
+     * 获取投票人编号
      *
-     * @return coupon_name - 优惠券名称
+     * @return voter_id - 投票人编号
      */
-    public String getCouponName() {
-        return couponName;
+    public String getVoterId() {
+        return voterId;
     }
 
     /**
-     * 设置优惠券名称
+     * 设置投票人编号
      *
-     * @param couponName 优惠券名称
+     * @param voterId 投票人编号
      */
-    public void setCouponName(String couponName) {
-        this.couponName = couponName;
+    public void setVoterId(String voterId) {
+        this.voterId = voterId;
     }
 
     /**
-     * 获取优惠券类型（01折扣；02抵扣）
+     * 获取优惠券状态
      *
-     * @return coupon_type - 优惠券类型（01折扣；02抵扣）
+     * @return coupon_status - 优惠券状态
      */
-    public Short getCouponType() {
-        return couponType;
+    public Short getCouponStatus() {
+        return couponStatus;
     }
 
     /**
-     * 设置优惠券类型（01折扣；02抵扣）
+     * 设置优惠券状态
      *
-     * @param couponType 优惠券类型（01折扣；02抵扣）
+     * @param couponStatus 优惠券状态
      */
-    public void setCouponType(Short couponType) {
-        this.couponType = couponType;
-    }
-
-    /**
-     * 获取折扣率（100即免费）
-     *
-     * @return discount_rate - 折扣率（100即免费）
-     */
-    public Integer getDiscountRate() {
-        return discountRate;
-    }
-
-    /**
-     * 设置折扣率（100即免费）
-     *
-     * @param discountRate 折扣率（100即免费）
-     */
-    public void setDiscountRate(Integer discountRate) {
-        this.discountRate = discountRate;
-    }
-
-    /**
-     * 获取抵扣金额（单位：分）
-     *
-     * @return discount_amout - 抵扣金额（单位：分）
-     */
-    public Integer getDiscountAmout() {
-        return discountAmout;
-    }
-
-    /**
-     * 设置抵扣金额（单位：分）
-     *
-     * @param discountAmout 抵扣金额（单位：分）
-     */
-    public void setDiscountAmout(Integer discountAmout) {
-        this.discountAmout = discountAmout;
-    }
-
-    /**
-     * 获取商品编号
-     *
-     * @return goods_id - 商品编号
-     */
-    public String getGoodsId() {
-        return goodsId;
-    }
-
-    /**
-     * 设置商品编号
-     *
-     * @param goodsId 商品编号
-     */
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId;
+    public void setCouponStatus(Short couponStatus) {
+        this.couponStatus = couponStatus;
     }
 
     /**
