@@ -1,6 +1,7 @@
 package com.soar.vote.common.dto.request;
 
 import com.soar.vote.common.dto.PageRequestDTO;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @author liyifei
  * @version 1.0
  **/
+@ToString
 public class FindVoteScopeRequestDTO extends PageRequestDTO implements Serializable {
     private static final long serialVersionUID = -6409518488663894282L;
 
@@ -45,14 +47,5 @@ public class FindVoteScopeRequestDTO extends PageRequestDTO implements Serializa
 
     public void setScopeLevel(Short scopeLevel) {
         this.scopeLevel = scopeLevel;
-    }
-
-    @Override
-    public String toString() {
-        return "FindVoteScopeRequestDTO{" +
-                "scopeName='" + scopeName + '\'' +
-                ", scopeParent='" + scopeParent + '\'' +
-                ", scopeLevel='" + scopeLevel + '\'' +
-                '}';
     }
 }

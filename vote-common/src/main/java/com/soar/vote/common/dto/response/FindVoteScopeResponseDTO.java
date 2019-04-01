@@ -1,5 +1,7 @@
 package com.soar.vote.common.dto.response;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ import java.util.Date;
  * @author liyifei
  * @version 1.0
  **/
+@ToString
 public class FindVoteScopeResponseDTO implements Serializable {
     private static final long serialVersionUID = 8109295536481628675L;
 
@@ -61,18 +64,6 @@ public class FindVoteScopeResponseDTO implements Serializable {
 
     public void setScopeLevel(String scopeLevel) {
         this.scopeLevel = scopeLevel;
-    }
-
-    @Override
-    public String toString() {
-        return "FindVoteScopeResponseDTO{" +
-                "scopeId='" + scopeId + '\'' +
-                ", scopeName='" + scopeName + '\'' +
-                ", scopeParentName='" + scopeParentName + '\'' +
-                ", scopeLevel='" + scopeLevel + '\'' +
-                ", description='" + description + '\'' +
-                ", createTime=" + createTime +
-                '}';
     }
 
     public String getDescription() {
