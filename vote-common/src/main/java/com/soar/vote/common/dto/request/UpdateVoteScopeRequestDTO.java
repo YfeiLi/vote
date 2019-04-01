@@ -1,5 +1,9 @@
 package com.soar.vote.common.dto.request;
 
+import lombok.ToString;
+
+import java.io.Serializable;
+
 /**
  * <strong>修改投票区域</strong>
  * date: 31/3/2019
@@ -7,7 +11,9 @@ package com.soar.vote.common.dto.request;
  * @author liyifei
  * @version 1.0
  **/
-public class UpdateVoteScopeRequestDTO {
+@ToString
+public class UpdateVoteScopeRequestDTO implements Serializable {
+    private static final long serialVersionUID = -4995443304962431273L;
 
     /** 区域名 */
     private String scopeName;

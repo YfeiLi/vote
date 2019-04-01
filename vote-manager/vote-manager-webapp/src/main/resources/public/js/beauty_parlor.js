@@ -12,7 +12,7 @@ layui.use(['table','form','element','jquery'], function(){
         ,url: 'http://localhost:8100/vote-manager/vote/scope'
         ,height: 'full-180'
         ,where: {
-            scopeLevel: 2
+            scopeLevel: 3
         }
         ,cols: [[
             {field:'scopeId', title: '编号'}
@@ -48,6 +48,9 @@ layui.use(['table','form','element','jquery'], function(){
             data:data,
             success:function(){
                 layer.msg("编辑成功");
+            },
+            error: function(jqXHR, textStatus){
+                layer.msg(textStatus);
             }
         })
     });
@@ -66,6 +69,9 @@ layui.use(['table','form','element','jquery'], function(){
                     type:'delete',
                     success:function () {
                         table.reload('scopeLists');
+                    },
+                    error: function(jqXHR, textStatus){
+                        layer.msg(textStatus);
                     }
                 });
             });
@@ -90,10 +96,10 @@ layui.use(['table','form','element','jquery'], function(){
     });
 
     // 设置下拉框
-    $.getJSON("/vote-manager/js/province.json",function(data){
+    $.getJSON("../../js/province.json",function(data){
         $.each(data, function (index, item) {
-            $('#scopeParent').append(new Option(item, item.id));// 下拉菜单里添加元素
+            $('#scopeParent').append(new Option(item, index));// 下拉菜单里添加元素
         });
-        layui.form.render("select");
+        form.render("select");
     });
 });

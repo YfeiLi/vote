@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html>
-<body>
-aaa
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>魅嘉丽-投票系统</title>
+    <link rel="stylesheet" href="../../plugin/layui/css/layui.css">
+</head>
+<body class="layui-layout-body" style="padding:30px 30px 5px 5px">
+<form class="layui-form">
+    <input type="hidden" name="scopeLevel" value="3" class="layui-input">
+    <div class="layui-form-item">
+        <label class="layui-form-label">美容院名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="scopeName" maxlength="20" lay-verify="required" autocomplete="off" placeholder="请输入内容" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属省份</label>
+        <div class="layui-input-block">
+            <select id="scopeParent" name="scopeParent" lay-filter="changeSelect" lay-verify="required" lay-search="">
+                <option value="">请选择或搜索</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">详细描述</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" maxlength="200" class="layui-textarea" name="description"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="add">添加</button>
+        </div>
+    </div>
+</form>
+<script src="../../plugin/layui/layui.js"></script>
+<script src="../../js/beauty_parlor_add.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.soar.vote.common.dto;
+package com.soar.vote.common.dto.base;
 
 import com.github.pagehelper.IPage;
 
@@ -9,7 +9,7 @@ import com.github.pagehelper.IPage;
  * @author liyifei
  * @version 1.0
  **/
-public class PageRequestDTO implements IPage {
+public abstract class PageRequestDTO implements IPage {
 
     /** 当前页 */
     private Integer pageNum=1;
