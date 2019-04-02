@@ -3,14 +3,14 @@ package com.soar.vote.persistence.entity;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "vote_statistics")
-public class VoteStatistics {
+@Table(name = "activity_candidate")
+public class ActivityCandidate {
     /**
      * 统计编号
      */
     @Id
-    @Column(name = "statistics_id")
-    private String statisticsId;
+    @Column(name = "activity_candidate_id")
+    private String activityCandidateId;
 
     /**
      * 活动编号
@@ -23,6 +23,12 @@ public class VoteStatistics {
      */
     @Column(name = "candidate_id")
     private String candidateId;
+
+    /**
+     * 候选人号码
+     */
+    @Column(name = "candidate_code")
+    private Short candidateCode;
 
     /**
      * 投票数
@@ -45,19 +51,19 @@ public class VoteStatistics {
     /**
      * 获取统计编号
      *
-     * @return statistics_id - 统计编号
+     * @return activity_candidate_id - 统计编号
      */
-    public String getStatisticsId() {
-        return statisticsId;
+    public String getActivityCandidateId() {
+        return activityCandidateId;
     }
 
     /**
      * 设置统计编号
      *
-     * @param statisticsId 统计编号
+     * @param activityCandidateId 统计编号
      */
-    public void setStatisticsId(String statisticsId) {
-        this.statisticsId = statisticsId;
+    public void setActivityCandidateId(String activityCandidateId) {
+        this.activityCandidateId = activityCandidateId;
     }
 
     /**
@@ -94,6 +100,24 @@ public class VoteStatistics {
      */
     public void setCandidateId(String candidateId) {
         this.candidateId = candidateId;
+    }
+
+    /**
+     * 获取候选人号码
+     *
+     * @return candidate_code - 候选人号码
+     */
+    public Short getCandidateCode() {
+        return candidateCode;
+    }
+
+    /**
+     * 设置候选人号码
+     *
+     * @param candidateCode 候选人号码
+     */
+    public void setCandidateCode(Short candidateCode) {
+        this.candidateCode = candidateCode;
     }
 
     /**

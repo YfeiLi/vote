@@ -1,5 +1,7 @@
 drop table if exists Candidate;
 
+drop table if exists activity_candidate;
+
 drop table if exists activity_voter;
 
 drop table if exists coupon;
@@ -13,8 +15,6 @@ drop table if exists vote_activity;
 drop table if exists vote_record;
 
 drop table if exists vote_scope;
-
-drop table if exists vote_statistics;
 
 drop table if exists voter;
 
@@ -34,6 +34,23 @@ create table Candidate
 );
 
 alter table Candidate comment '候选人';
+
+/*==============================================================*/
+/* Table: activity_candidate                                    */
+/*==============================================================*/
+create table activity_candidate
+(
+   activity_candidate_id varchar(32) not null comment '统计编号',
+   activity_id          varchar(32) comment '活动编号',
+   candidate_id         varchar(32) comment '候选人编号',
+   candidate_code       smallint comment '候选人号码',
+   vote_count           int comment '投票数',
+   create_time          datetime comment '创建时间',
+   update_time          datetime comment '更新时间',
+   primary key (activity_candidate_id)
+);
+
+alter table activity_candidate comment '活动候选人';
 
 /*==============================================================*/
 /* Table: activity_voter                                        */
@@ -154,22 +171,6 @@ create table vote_scope
 );
 
 alter table vote_scope comment '投票区域';
-
-/*==============================================================*/
-/* Table: vote_statistics                                       */
-/*==============================================================*/
-create table vote_statistics
-(
-   statistics_id        varchar(32) not null comment '统计编号',
-   activity_id          varchar(32) comment '活动编号',
-   candidate_id         varchar(32) comment '候选人编号',
-   vote_count           int comment '投票数',
-   create_time          datetime comment '创建时间',
-   update_time          datetime comment '更新时间',
-   primary key (statistics_id)
-);
-
-alter table vote_statistics comment '投票统计';
 
 /*==============================================================*/
 /* Table: voter                                                 */

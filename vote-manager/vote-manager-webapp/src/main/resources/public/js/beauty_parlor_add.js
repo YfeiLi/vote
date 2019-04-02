@@ -14,7 +14,8 @@ layui.use(['form','element','jquery'], function(){
             data: params,
             success: function(data){
                 layer.msg("添加成功");
-                form.reset();
+                parent.window.location.reload();
+                parent.layer.close(index);
             },
             error: function(jqXHR, textStatus){
                 layer.msg(textStatus);
@@ -27,6 +28,7 @@ layui.use(['form','element','jquery'], function(){
     $.getJSON("/vote-manager/js/province.json",function(data){
         $.each(data, function (index, item) {
             $('#scopeParent').append(new Option(item, index));// 下拉菜单里添加元素
+            var index = parent.layer.getFrameIndex(window.name);
         });
         form.render("select");
     });

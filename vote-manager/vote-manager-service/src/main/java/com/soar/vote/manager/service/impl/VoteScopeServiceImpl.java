@@ -7,6 +7,7 @@ import com.soar.vote.common.dto.request.AddVoteScopeRequestDTO;
 import com.soar.vote.common.dto.request.FindVoteScopeRequestDTO;
 import com.soar.vote.common.dto.request.UpdateVoteScopeRequestDTO;
 import com.soar.vote.common.dto.response.FindVoteScopeResponseDTO;
+import com.soar.vote.common.util.UUIDUtil;
 import com.soar.vote.manager.service.VoteScopeService;
 import com.soar.vote.persistence.entity.VoteScope;
 import com.soar.vote.persistence.mapper.VoteScopeMapper;
@@ -36,7 +37,7 @@ public class VoteScopeServiceImpl implements VoteScopeService {
 
         VoteScope entity = new VoteScope();
         BeanUtils.copyProperties(requestDTO,entity);
-        String scopeId = UUID.randomUUID().toString().replace("-","");
+        String scopeId = UUIDUtil.getHashID(16);
         entity.setScopeId(scopeId);
         entity.setCreateTime(new Date());
         voteScopeMapper.insert(entity);
