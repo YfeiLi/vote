@@ -7,8 +7,8 @@ layui.use(['table','form','element','jquery'], function(){
 
     // 定义数据表格
     table.render({
-        id: 'scopeLists'
-        ,elem: '#scopeLists'
+        id: 'scopeList'
+        ,elem: '#scopeList'
         ,url: 'http://localhost:8100/vote-manager/vote/scope'
         ,height: 'full-180'
         ,where: {
@@ -20,7 +20,7 @@ layui.use(['table','form','element','jquery'], function(){
             ,{field:'scopeParentName', title: '省份'}
             ,{field:'description', title: '详细描述 ✎', width: 250, edit:'text'}
             ,{field:'createTime', title: '添加时间',templet: '<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
-            ,{fixed: 'right', title:'操作', toolbar: '#bar', width:70}
+            ,{fixed: 'right', title:'操作', toolbar: '#bar', width:130}
         ]]
         ,request: {
             pageName: 'pageNum' //页码的参数名称，默认：page
@@ -38,7 +38,7 @@ layui.use(['table','form','element','jquery'], function(){
     });
 
     // 监听数据编辑
-    table.on('edit(scopeLists)', function(obj){
+    table.on('edit(scopeList)', function(obj){
         var value = obj.value //得到修改后的值
             ,data = obj.data //得到所在行所有键值
             ,field = obj.field; //得到字段
@@ -56,7 +56,7 @@ layui.use(['table','form','element','jquery'], function(){
     });
 
     // 监听删除数据
-    table.on('tool(scopeLists)',function(obj){
+    table.on('tool(scopeList)',function(obj){
         var data = obj.data; //获得当前行数据
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 
@@ -68,19 +68,28 @@ layui.use(['table','form','element','jquery'], function(){
                     url:'http://localhost:8100/vote-manager/vote/scope/'+data.scopeId,
                     type:'delete',
                     success:function () {
-                        table.reload('scopeLists');
+                        table.reload('scopeList');
                     },
                     error: function(jqXHR, textStatus){
                         layer.msg(textStatus);
                     }
                 });
             });
+        } else if(layEvent === 'candidate'){ // 候选人
+            layer.open({
+                type: 2,
+                title: data.scopeName+" - 候选人管理",
+                area:['950px','550px'],
+                shade: 0.3,
+                offset: "5%",
+                content:'candidate.html?scopeId='+data.scopeId
+            });
         }
     });
 
     // 监听下拉框修改值
     form.on('select(changeSelect)',function(data){
-        table.reload('scopeLists', {where: {scopeParent: data.value}});
+        table.reload('scopeList', {where: {scopeParent: data.value}});
     });
 
     // 添加按钮

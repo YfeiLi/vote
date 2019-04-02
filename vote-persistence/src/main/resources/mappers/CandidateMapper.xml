@@ -13,4 +13,23 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <select id="find" resultType="com.soar.vote.common.dto.response.FindCandidateResponseDTO">
+    select
+      c.candidate_id as candidateId,
+      c.candidate_name as candidateName,
+      vs.scope_name as scopeName,
+      c.description as description,
+      c.create_time as createTime
+    from candidate c
+    left join vote_scope vs on c.scope_id = vs.scope_id
+    <where>
+      <if test="candidateName!=null and candidateName!=''">
+        c.candidate_name like concat('%',#{candidateName},'%')
+      </if>
+      <if test="scopeId!=null and scopeId!=''">
+        and vs.scope_id = #{scopeId}
+      </if>
+    </where>
+  </select>
 </mapper>

@@ -1,6 +1,5 @@
 package com.soar.vote.manager.service;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.soar.vote.common.dto.request.AddVoteScopeRequestDTO;
 import com.soar.vote.common.dto.request.FindVoteScopeRequestDTO;
