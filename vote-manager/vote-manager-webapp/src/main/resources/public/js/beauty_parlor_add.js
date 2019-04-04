@@ -13,9 +13,7 @@ layui.use(['form','element','jquery'], function(){
             contentType: 'application/json',
             data: params,
             success: function(data){
-                layer.msg("添加成功");
                 parent.window.location.reload();
-                parent.layer.close(index);
             },
             error: function(jqXHR, textStatus){
                 layer.msg(textStatus);

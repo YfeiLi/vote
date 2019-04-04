@@ -1,18 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.soar.vote.persistence.mapper.VoteActivityMapper" >
-  <resultMap id="BaseResultMap" type="com.soar.vote.persistence.entity.VoteActivity" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soar.vote.persistence.mapper.VoteActivityMapper">
+  <resultMap id="BaseResultMap" type="com.soar.vote.persistence.entity.VoteActivity">
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="activity_id" property="activityId" jdbcType="VARCHAR" />
-    <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
-    <result column="scope_id" property="scopeId" jdbcType="VARCHAR" />
-    <result column="max_votes" property="maxVotes" jdbcType="SMALLINT" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
-    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <id column="activity_id" jdbcType="VARCHAR" property="activityId" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="scope_id" jdbcType="VARCHAR" property="scopeId" />
+    <result column="votes_limit_type" jdbcType="SMALLINT" property="votesLimitType" />
+    <result column="max_votes" jdbcType="SMALLINT" property="maxVotes" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <select id="find" resultType="com.soar.vote.common.dto.response.FindVoteActivityResponseDTO">
+    select
+      va.activity_id as activityId,
+      va.activity_name as activityName,
+      vs.scope_name as scopeName,
+      va.start_time as startTime,
+      va.end_time as endTime
+    from vote_activity va
+    left join vote_scope vs on va.scope_id = vs.scope_id
+    <where>
+      <if test="startTime!=null">
+        start_time &gt; #{startTime}
+      </if>
+      <if test="endTime!=null">
+        and end_time &lt; #{endTime}
+      </if>
+    </where>
+  </select>
+
+
 </mapper>

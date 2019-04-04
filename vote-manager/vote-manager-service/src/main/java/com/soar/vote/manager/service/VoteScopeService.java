@@ -20,9 +20,9 @@ public interface VoteScopeService {
      * @author liyifei
      * @date 2/4/2019
      * @param requestDTO 添加参数
-     * @return
+     * @return 区域编号
      */
-    String add(AddVoteScopeRequestDTO requestDTO);
+    String add(AddVoteScopeRequestDTO requestDTO) throws Exception;
 
     /**
      * 删除区域
@@ -30,16 +30,16 @@ public interface VoteScopeService {
      * @date 1/4/2019
      * @param scopeId 区域编号
      */
-    void delete(String scopeId);
+    void delete(String scopeId) throws Exception;
 
     /**
-     * 查询列表
+     * 查询投票区域列表
      * @author liyifei
      * @date 31/3/2019
      * @param requestDTO 查询条件
      * @return 区域列表
      */
-    PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO);
+    PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) throws Exception;
 
     /**
      * 修改区域
@@ -48,5 +48,5 @@ public interface VoteScopeService {
      * @param scopeId 区域编号
      * @param requestDTO 修改参数
      */
-    void update(String scopeId, UpdateVoteScopeRequestDTO requestDTO);
+    void update(String scopeId, UpdateVoteScopeRequestDTO requestDTO) throws Exception;
 }

@@ -5,14 +5,14 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * <strong>查询候选人详情</strong>
+ * <strong>查询候选人</strong>
  * date: 3/4/2019
  *
  * @author liyifei
  * @version 1.0
  **/
 @ToString
-public class FindCandidateResponseDTO implements Serializable {
+public class FindCandidateDetailResponseDTO implements Serializable {
     private static final long serialVersionUID = 7091227623339792423L;
 
     /** 编号 */
@@ -21,8 +21,8 @@ public class FindCandidateResponseDTO implements Serializable {
     /** 候选人姓名 */
     private String candidateName;
 
-    /** 区域名称 */
-    private String scopeName;
+    /** 照片 */
+    private String photo;
 
     /** 详细描述 */
     private String description;
@@ -46,12 +46,12 @@ public class FindCandidateResponseDTO implements Serializable {
         this.candidateName = candidateName;
     }
 
-    public String getScopeName() {
-        return scopeName;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setScopeName(String scopeName) {
-        this.scopeName = scopeName;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getDescription() {

@@ -52,9 +52,24 @@
         </div>
     </div>
 
-    <div class="layui-body">
+    <div class="layui-body" style="padding:15px">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+        <div class="layui-form">
+            时间范围：
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="startTime" name="startTime" placeholder="yyyy-MM-dd" style="cursor:pointer" readonly>
+            </div>
+            ~
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="endTime" name="endTime" placeholder="yyyy-MM-dd" style="cursor:pointer" readonly>
+            </div>
+            <button id="add_button" class="layui-btn" style="float:right">添加</button>
+        </div>
+        <script type="text/html" id="bar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="activity">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+        <table id="activityList" class="layui-hide" lay-filter="activityList"></table>
     </div>
 
     <div class="layui-footer">
@@ -63,12 +78,6 @@
     </div>
 </div>
 <script src="../../plugin/layui/layui.js"></script>
-<script>
-    //JavaScript代码区域
-    layui.use('element', function(){
-        var element = layui.element;
-
-    });
-</script>
+<script src="../../js/activity.js"></script>
 </body>
 </html>

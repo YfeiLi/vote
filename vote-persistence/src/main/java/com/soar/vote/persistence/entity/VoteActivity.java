@@ -25,7 +25,13 @@ public class VoteActivity {
     private String scopeId;
 
     /**
-     * 投票人最大投票数
+     * 投票数限制类型
+     */
+    @Column(name = "votes_limit_type")
+    private Short votesLimitType;
+
+    /**
+     * 投票人最大投票数（1每天；2整个活动）
      */
     @Column(name = "max_votes")
     private Short maxVotes;
@@ -114,18 +120,36 @@ public class VoteActivity {
     }
 
     /**
-     * 获取投票人最大投票数
+     * 获取投票数限制类型
      *
-     * @return max_votes - 投票人最大投票数
+     * @return votes_limit_type - 投票数限制类型
+     */
+    public Short getVotesLimitType() {
+        return votesLimitType;
+    }
+
+    /**
+     * 设置投票数限制类型
+     *
+     * @param votesLimitType 投票数限制类型
+     */
+    public void setVotesLimitType(Short votesLimitType) {
+        this.votesLimitType = votesLimitType;
+    }
+
+    /**
+     * 获取投票人最大投票数（1每天；2整个活动）
+     *
+     * @return max_votes - 投票人最大投票数（1每天；2整个活动）
      */
     public Short getMaxVotes() {
         return maxVotes;
     }
 
     /**
-     * 设置投票人最大投票数
+     * 设置投票人最大投票数（1每天；2整个活动）
      *
-     * @param maxVotes 投票人最大投票数
+     * @param maxVotes 投票人最大投票数（1每天；2整个活动）
      */
     public void setMaxVotes(Short maxVotes) {
         this.maxVotes = maxVotes;

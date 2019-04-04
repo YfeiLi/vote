@@ -55,7 +55,7 @@ layui.use(['table','form','element','jquery'], function(){
         })
     });
 
-    // 监听删除数据
+    // 监听数据操作
     table.on('tool(scopeList)',function(obj){
         var data = obj.data; //获得当前行数据
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
