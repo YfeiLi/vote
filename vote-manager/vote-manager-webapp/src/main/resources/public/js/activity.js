@@ -11,13 +11,18 @@ layui.use(['table','form','element','jquery','laydate'], function() {
         id: 'activityList'
         ,elem: '#activityList'
         ,url: 'http://localhost:8100/vote-manager/vote/activity'
+        ,where: {
+            startTime: $('#startTime').val(),
+            endTime: $('#endTime').val()
+        }
         ,height: 'full-180'
         ,cols: [[
             {field:'activityId', title: '编号'}
             ,{field:'activityName', title: '姓名'}
             ,{field:'scopeName', title: '活动范围 '}
-            ,{field:'startTime', title: '开始时间',templet: '<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
-            ,{field:'endTime', title: '结束时间',templet: '<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+            ,{field:'candidateNum', title: '候选人数量 '}
+            ,{field:'startTime', title: '开始时间',templet: '<div>{{ layui.util.toDateString(d.startTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+            ,{field:'endTime', title: '结束时间',templet: '<div>{{ layui.util.toDateString(d.endTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
             ,{fixed: 'right', title:'操作', toolbar: '#bar', width:120}
         ]]
         ,request: {
@@ -35,19 +40,35 @@ layui.use(['table','form','element','jquery','laydate'], function() {
         ,page: true
     });
 
-    // 设置下拉框
-    $.getJSON("../../js/province.json",function(data){
-        $.each(data, function (index, item) {
-            $('#scopeParent').append(new Option(item, index));// 下拉菜单里添加元素
-        });
-        form.render("select");
-    });
-
     // 设置时间选择器
     laydate.render({
         elem: '#startTime'
+        ,done: function(){
+            table.reload('activityList', {where: {
+                startTime: $('#startTime').val(),
+                endTime: $('#endTime').val()
+            }});
+        }
     });
     laydate.render({
         elem: '#endTime'
+        ,done: function(){
+            table.reload('activityList', {where: {
+                startTime: $('#startTime').val(),
+                endTime: $('#endTime').val()
+            }});
+        }
+    });
+
+    // 添加按钮
+    $(document).on('click','#add_button',function(){
+        layer.open({
+            type: 2,
+            title: '添加活动',
+            area:['650px','550px'],
+            shade: 0.3,
+            offset: "5%",
+            content:'activity_add.html'
+        });
     });
 });

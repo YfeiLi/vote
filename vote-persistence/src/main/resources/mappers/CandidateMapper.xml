@@ -31,5 +31,13 @@
         and vs.scope_id = #{scopeId}
       </if>
     </where>
+    order by c.create_time desc
+  </select>
+
+  <select id="selectByScopeIdRecursive" resultMap="BaseResultMap">
+    select
+      *
+    from candidate
+    where find_in_set(scope_id,queryScopeRecursive(#{scopeId}))
   </select>
 </mapper>

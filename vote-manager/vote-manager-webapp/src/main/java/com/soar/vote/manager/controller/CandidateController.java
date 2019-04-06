@@ -7,7 +7,6 @@ import com.soar.vote.common.dto.request.UpdateCandidateRequestDTO;
 import com.soar.vote.common.dto.response.FindCandidateDetailResponseDTO;
 import com.soar.vote.common.dto.response.FindCandidateResponseDTO;
 import com.soar.vote.manager.service.CandidateService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

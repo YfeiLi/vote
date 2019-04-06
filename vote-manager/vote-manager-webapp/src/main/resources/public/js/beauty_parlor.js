@@ -104,7 +104,7 @@ layui.use(['table','form','element','jquery'], function(){
         });
     });
 
-    // 设置下拉框
+    // 设置省份
     $.getJSON("../../js/province.json",function(data){
         $.each(data, function (index, item) {
             $('#scopeParent').append(new Option(item, index));// 下拉菜单里添加元素

@@ -44,7 +44,7 @@ create table activity_candidate
    activity_id          varchar(32) comment '活动编号',
    candidate_id         varchar(32) comment '候选人编号',
    candidate_code       smallint comment '候选人号码',
-   vote_count           int comment '投票数',
+   vote_count           smallint comment '投票数',
    create_time          datetime comment '创建时间',
    update_time          datetime comment '更新时间',
    primary key (activity_candidate_id)

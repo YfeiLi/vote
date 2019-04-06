@@ -40,7 +40,7 @@ public class VoteScopeServiceImpl implements VoteScopeService {
         String scopeId = UUIDUtil.getHashID(16);
         entity.setScopeId(scopeId);
         entity.setCreateTime(new Date());
-        voteScopeMapper.insert(entity);
+        voteScopeMapper.insertSelective(entity);
         return scopeId;
     }
 

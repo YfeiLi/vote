@@ -34,7 +34,7 @@ public class ActivityCandidate {
      * 投票数
      */
     @Column(name = "vote_count")
-    private Integer voteCount;
+    private Short voteCount;
 
     /**
      * 创建时间
@@ -125,7 +125,7 @@ public class ActivityCandidate {
      *
      * @return vote_count - 投票数
      */
-    public Integer getVoteCount() {
+    public Short getVoteCount() {
         return voteCount;
     }
 
@@ -134,7 +134,7 @@ public class ActivityCandidate {
      *
      * @param voteCount 投票数
      */
-    public void setVoteCount(Integer voteCount) {
+    public void setVoteCount(Short voteCount) {
         this.voteCount = voteCount;
     }
 

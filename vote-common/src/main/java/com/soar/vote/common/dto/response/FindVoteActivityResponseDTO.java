@@ -25,6 +25,9 @@ public class FindVoteActivityResponseDTO implements Serializable {
     /** 区域名称 */
     private String scopeName;
 
+    /** 候选人数量 */
+    private Integer candidateNum;
+
     /** 开始时间 */
     private Date startTime;
 
@@ -53,6 +56,14 @@ public class FindVoteActivityResponseDTO implements Serializable {
 
     public void setScopeName(String scopeName) {
         this.scopeName = scopeName;
+    }
+
+    public Integer getCandidateNum() {
+        return candidateNum;
+    }
+
+    public void setCandidateNum(Integer candidateNum) {
+        this.candidateNum = candidateNum;
     }
 
     public Date getStartTime() {

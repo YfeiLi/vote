@@ -21,20 +21,23 @@
     select
       va.activity_id as activityId,
       va.activity_name as activityName,
+      count(ac.candidate_id) as candidateNum,
       vs.scope_name as scopeName,
       va.start_time as startTime,
       va.end_time as endTime
     from vote_activity va
     left join vote_scope vs on va.scope_id = vs.scope_id
+    left join activity_candidate ac on va.activity_id = ac.activity_id
     <where>
       <if test="startTime!=null">
-        start_time &gt; #{startTime}
+        <![CDATA[ start_time >= #{startTime} ]]>
       </if>
       <if test="endTime!=null">
-        and end_time &lt; #{endTime}
+        <![CDATA[ and end_time < date_add(#{endTime}, INTERVAL 1 day) ]]>
       </if>
     </where>
+    group by va.activity_id
+    order by va.create_time desc
   </select>
-
 
 </mapper>

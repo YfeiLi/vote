@@ -48,7 +48,7 @@ public class CandidateServiceImpl implements CandidateService {
         entity.setCandidateId(candidateId);
         entity.setPhotoUrl(fileName);
         entity.setCreateTime(new Date());
-        candidateMapper.insert(entity);
+        candidateMapper.insertSelective(entity);
         return candidateId;
     }
 
