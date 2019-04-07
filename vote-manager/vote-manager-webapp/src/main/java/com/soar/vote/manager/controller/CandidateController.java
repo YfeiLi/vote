@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @author liyifei
  * @version 1.0
  **/
-@RequestMapping("vote/candidate")
+@RequestMapping("candidate")
 @RestController
 public class CandidateController {
 

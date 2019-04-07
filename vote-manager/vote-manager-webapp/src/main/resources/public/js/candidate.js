@@ -11,7 +11,7 @@ layui.use(['table','form','element','jquery'], function(){
     table.render({
         id: 'candidateList'
         ,elem: '#candidateList'
-        ,url: 'http://localhost:8100/vote-manager/vote/candidate'
+        ,url: 'http://localhost:8100/vote-manager/candidate'
         ,height: 'full-100'
         ,where: {
             scopeId: scopeId
@@ -66,7 +66,7 @@ layui.use(['table','form','element','jquery'], function(){
                 layer.close(index);
                 //向服务端发送删除指令
                 $.ajax({
-                    url:'http://localhost:8100/vote-manager/vote/candidate/'+data.candidateId,
+                    url:'http://localhost:8100/vote-manager/candidate/'+data.candidateId,
                     type:'delete',
                     success:function () {
                         table.reload('candidateList');
@@ -76,10 +76,10 @@ layui.use(['table','form','element','jquery'], function(){
                     }
                 });
             });
-        } else if(layEvent === 'edit'){ // 编辑
+        } else if(layEvent === 'detail'){ // 详情
             layer.open({
                 type: 2,
-                title: '编辑候选人',
+                title: '候选人详情',
                 area:['650px','480px'],
                 shade: 0.3,
                 offset: "3%",

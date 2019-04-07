@@ -6,9 +6,11 @@
       WARNING - @mbggenerated
     -->
     <id column="voter_id" jdbcType="VARCHAR" property="voterId" />
+    <result column="wechar_open_id" jdbcType="VARCHAR" property="wecharOpenId" />
     <result column="wechar_nickname" jdbcType="VARCHAR" property="wecharNickname" />
     <result column="voter_mobile" jdbcType="VARCHAR" property="voterMobile" />
     <result column="voter_name" jdbcType="VARCHAR" property="voterName" />
+    <result column="voter_gender" jdbcType="SMALLINT" property="voterGender" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>

@@ -9,7 +9,7 @@ layui.use(['form','element','jquery','upload'], function(){
 
     // 查询
     $.ajax({
-        url: 'http://localhost:8100/vote-manager/vote/candidate/'+GetQueryString('candidateId'),
+        url: 'http://localhost:8100/vote-manager/candidate/'+GetQueryString('candidateId'),
         type: 'get',
         success:function (result) {
             $('#thumbnail').attr('src','data:image/jpeg;base64,'+result.photo);
@@ -25,7 +25,7 @@ layui.use(['form','element','jquery','upload'], function(){
     form.on('submit(edit)',function(data){
         var params = data.field;
         $.ajax({
-            url: "http://localhost:8100/vote-manager/vote/candidate/"+GetQueryString('candidateId'),
+            url: "http://localhost:8100/vote-manager/candidate/"+GetQueryString('candidateId'),
             type: 'put',
             data: params,
             success: function(data){

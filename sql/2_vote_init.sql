@@ -18,6 +18,8 @@ drop table if exists vote_scope;
 
 drop table if exists voter;
 
+drop table if exists voter_session;
+
 /*==============================================================*/
 /* Table: Candidate                                             */
 /*==============================================================*/
@@ -44,7 +46,7 @@ create table activity_candidate
    activity_id          varchar(32) comment '活动编号',
    candidate_id         varchar(32) comment '候选人编号',
    candidate_code       smallint comment '候选人号码',
-   vote_count           smallint comment '投票数',
+   votes           smallint comment '投票数',
    create_time          datetime comment '创建时间',
    update_time          datetime comment '更新时间',
    primary key (activity_candidate_id)
@@ -179,12 +181,39 @@ alter table vote_scope comment '投票区域';
 create table voter
 (
    voter_id             varchar(32) not null comment '投票人编号',
+   wechar_open_id      varchar(128) comment '微信唯一号',
    wechar_nickname      varchar(64) comment '投票人微信昵称',
    voter_mobile         varchar(16) comment '投票人手机号',
    voter_name           varchar(32) comment '投票人姓名',
+   voter_gender         smallint comment '性别（1男；2女）',
    create_time          datetime comment '创建时间',
    update_time          datetime comment '更新时间',
    primary key (voter_id)
 );
 
 alter table voter comment '投票人';
+
+/*==============================================================*/
+/* Table: voter_session                                         */
+/*==============================================================*/
+create table voter_session
+(
+   content         varchar(128) comment '令牌主体',
+   voter_id        varchar(32) comment '投票人编号',
+   create_time     datetime comment '创建时间',
+   expired_time    datetime comment '失效时间'
+);
+
+alter table voter comment '投票人授权令牌';
+
+/*==============================================================*/
+/* Table: base_config                                           */
+/*==============================================================*/
+create table base_config
+(
+   name     varchar(64) comment '名称',
+   value    varchar(128) comment '值',
+   primary key (name)
+);
+
+alter table voter comment '基础配置';

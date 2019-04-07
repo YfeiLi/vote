@@ -9,7 +9,7 @@ layui.use(['table','form','element','jquery'], function(){
     table.render({
         id: 'scopeList'
         ,elem: '#scopeList'
-        ,url: 'http://localhost:8100/vote-manager/vote/scope'
+        ,url: 'http://localhost:8100/vote-manager/scope'
         ,height: 'full-180'
         ,where: {
             scopeLevel: 3
@@ -43,7 +43,7 @@ layui.use(['table','form','element','jquery'], function(){
             ,data = obj.data //得到所在行所有键值
             ,field = obj.field; //得到字段
         $.ajax({
-            url:'http://localhost:8100/vote-manager/vote/scope/'+data.scopeId,
+            url:'http://localhost:8100/vote-manager/scope/'+data.scopeId,
             type:'put',
             data:data,
             success:function(){
@@ -65,7 +65,7 @@ layui.use(['table','form','element','jquery'], function(){
                 layer.close(index);
                 //向服务端发送删除指令
                 $.ajax({
-                    url:'http://localhost:8100/vote-manager/vote/scope/'+data.scopeId,
+                    url:'http://localhost:8100/vote-manager/scope/'+data.scopeId,
                     type:'delete',
                     success:function () {
                         table.reload('scopeList');
@@ -79,7 +79,7 @@ layui.use(['table','form','element','jquery'], function(){
             layer.open({
                 type: 2,
                 title: data.scopeName+" - 候选人管理",
-                area:['950px','550px'],
+                area:['850px','550px'],
                 shade: 0.3,
                 offset: "5%",
                 content:'candidate.html?scopeId='+data.scopeId

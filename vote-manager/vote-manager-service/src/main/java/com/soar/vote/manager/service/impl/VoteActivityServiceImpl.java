@@ -3,7 +3,9 @@ package com.soar.vote.manager.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.soar.vote.common.dto.request.AddVoteActivityRequestDTO;
+import com.soar.vote.common.dto.request.FindActivityCandidateRequestDTO;
 import com.soar.vote.common.dto.request.FindVoteActivityRequestDTO;
+import com.soar.vote.common.dto.response.FindActivityCandidateResponseDTO;
 import com.soar.vote.common.dto.response.FindVoteActivityResponseDTO;
 import com.soar.vote.common.util.UUIDUtil;
 import com.soar.vote.manager.service.VoteActivityService;
@@ -44,23 +46,35 @@ public class VoteActivityServiceImpl implements VoteActivityService {
     @Transactional(rollbackFor = Exception.class)
     public String add(AddVoteActivityRequestDTO requestDTO) {
 
-        String activityId = UUIDUtil.getHashID(20);
+        String activityId = UUIDUtil.getHashID(18);
         VoteActivity entity = new VoteActivity();
         BeanUtils.copyProperties(requestDTO,entity);
         entity.setActivityId(activityId);
         entity.setCreateTime(new Date());
         voteActivityMapper.insertSelective(entity);
         List<Candidate> candidateList = candidateMapper.selectByScopeIdRecursive(requestDTO.getScopeId());
-        for (int i=0; i<candidateList.size(); i++) {
+        short candidateCode = 1;
+        for (Candidate candidate : candidateList) {
             ActivityCandidate activityCandidate = new ActivityCandidate();
             activityCandidate.setActivityCandidateId(UUIDUtil.getUUID());
             activityCandidate.setActivityId(activityId);
-            activityCandidate.setCandidateId(candidateList.get(i).getCandidateId());
-            activityCandidate.setCandidateCode((short)i);
-            activityCandidate.setVoteCount(requestDTO.getMaxVotes());
+            activityCandidate.setCandidateId(candidate.getCandidateId());
+            activityCandidate.setCandidateCode(candidateCode++);
+            activityCandidate.setVotes((short)0);
             activityCandidate.setCreateTime(new Date());
             activityCandidateMapper.insertSelective(activityCandidate);
         }
+        return activityId;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public String delete(String activityId) {
+
+        ActivityCandidate activityCandidate = new ActivityCandidate();
+        activityCandidate.setActivityId(activityId);
+        activityCandidateMapper.delete(activityCandidate);
+        voteActivityMapper.deleteByPrimaryKey(activityId);
         return activityId;
     }
 
@@ -69,6 +83,14 @@ public class VoteActivityServiceImpl implements VoteActivityService {
 
         PageHelper.startPage(requestDTO);
         List<FindVoteActivityResponseDTO> list = voteActivityMapper.find(requestDTO);
+        return PageInfo.of(list);
+    }
+
+    @Override
+    public PageInfo<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO) throws Exception {
+
+        PageHelper.startPage(requestDTO);
+        List<FindActivityCandidateResponseDTO> list = voteActivityMapper.findCandidate(requestDTO);
         return PageInfo.of(list);
     }
 }

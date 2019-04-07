@@ -6,7 +6,7 @@
 
 <generatorConfiguration>
     <classPathEntry
-            location="C:\Users\LYF\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+            location="D:\Document\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
@@ -29,8 +29,7 @@
         <!-- sql占位符，表示所有的表 -->
         <!--<table tableName="%">-->
 
-        <!--<table tableName="voter" enableSelectByExample="false"/>
-        <table tableName="candidate" enableSelectByExample="false"/>
+        <!--<table tableName="candidate" enableSelectByExample="false"/>
         <table tableName="vote_activity" enableSelectByExample="false"/>
         <table tableName="vote_record" enableSelectByExample="false"/>
         <table tableName="activity_voter" enableSelectByExample="false"/>
@@ -38,8 +37,11 @@
         <table tableName="goods" enableSelectByExample="false"/>
         <table tableName="coupon_group" enableSelectByExample="false"/>
         <table tableName="coupon" enableSelectByExample="false"/>
-        <table tableName="activity_candidate" enableSelectByExample="false"/>-->
+        <table tableName="activity_candidate" enableSelectByExample="false"/>
         <table tableName="vote_activity" enableSelectByExample="false"/>
+        <table tableName="voter_session" enableSelectByExample="false"/>
+        <table tableName="voter" enableSelectByExample="false"/>-->
+        <table tableName="base_config" enableSelectByExample="false"/>
 
     </context>
 </generatorConfiguration>

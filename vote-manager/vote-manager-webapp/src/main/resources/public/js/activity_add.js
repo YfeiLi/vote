@@ -10,7 +10,7 @@ layui.use(['form','element','jquery','laydate'], function(){
     form.on('submit(add)',function(data){
         var params = JSON.stringify(data.field);
         $.ajax({
-            url: "http://localhost:8100/vote-manager/vote/activity",
+            url: "http://localhost:8100/vote-manager/activity",
             type: 'post',
             contentType: 'application/json',
             data: params,
@@ -75,7 +75,7 @@ layui.use(['form','element','jquery','laydate'], function(){
         } else{
             $('#scopeId').val('');
             $.ajax({
-                url: 'http://localhost:8100/vote-manager/vote/scope',
+                url: 'http://localhost:8100/vote-manager/scope',
                 type: 'get',
                 data:{scopeLevel:3,scopeParent:province},
                 success: function(data){

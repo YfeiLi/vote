@@ -40,4 +40,23 @@
     order by va.create_time desc
   </select>
 
+  <select id="findCandidate" resultType="com.soar.vote.common.dto.response.FindActivityCandidateResponseDTO">
+    select
+      ac.candidate_code as candidateCode,
+      ac.candidate_id as candidateId,
+      c.candidate_name as candidateName,
+      ac.votes as votes
+    from activity_candidate ac
+    left join candidate c on ac.candidate_id = c.candidate_id
+    <where>
+      <if test="activityId!=null and activityId!=''">
+        ac.activity_id = #{activityId}
+      </if>
+      <if test="candidateName!=null and candidateName!=''">
+        and c.candidate_name like concat('%',#{candidateName},'%')
+      </if>
+    </where>
+    order by ac.candidate_code
+  </select>
+
 </mapper>

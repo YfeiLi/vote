@@ -10,7 +10,7 @@ layui.use(['table','form','element','jquery','laydate'], function() {
     table.render({
         id: 'activityList'
         ,elem: '#activityList'
-        ,url: 'http://localhost:8100/vote-manager/vote/activity'
+        ,url: 'http://localhost:8100/vote-manager/activity'
         ,where: {
             startTime: $('#startTime').val(),
             endTime: $('#endTime').val()
@@ -18,11 +18,11 @@ layui.use(['table','form','element','jquery','laydate'], function() {
         ,height: 'full-180'
         ,cols: [[
             {field:'activityId', title: '编号'}
-            ,{field:'activityName', title: '姓名'}
+            ,{field:'activityName', title: '活动名称'}
             ,{field:'scopeName', title: '活动范围 '}
             ,{field:'candidateNum', title: '候选人数量 '}
-            ,{field:'startTime', title: '开始时间',templet: '<div>{{ layui.util.toDateString(d.startTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
-            ,{field:'endTime', title: '结束时间',templet: '<div>{{ layui.util.toDateString(d.endTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+            ,{field:'startTime', title: '开始时间',templet: '<div>{{ layui.util.toDateString(d.startTime, "yyyy-MM-dd") }}</div>'}
+            ,{field:'endTime', title: '结束时间',templet: '<div>{{ layui.util.toDateString(d.endTime, "yyyy-MM-dd") }}</div>'}
             ,{fixed: 'right', title:'操作', toolbar: '#bar', width:120}
         ]]
         ,request: {
@@ -65,10 +65,42 @@ layui.use(['table','form','element','jquery','laydate'], function() {
         layer.open({
             type: 2,
             title: '添加活动',
-            area:['650px','550px'],
+            area:['650px','560px'],
             shade: 0.3,
             offset: "5%",
             content:'activity_add.html'
         });
+    });
+
+    // 监听数据操作
+    table.on('tool(activityList)',function(obj){
+        var data = obj.data; //获得当前行数据
+        var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+
+        if(layEvent === 'del') { //删除
+            layer.confirm('真的删除行么', function(index){
+                layer.close(index);
+                //向服务端发送删除指令
+                $.ajax({
+                    url:'http://localhost:8100/vote-manager/activity/'+data.activityId,
+                    type:'delete',
+                    success:function () {
+                        table.reload('activityList');
+                    },
+                    error: function(jqXHR, textStatus){
+                        layer.msg(textStatus);
+                    }
+                });
+            });
+        } else if(layEvent === 'detail'){ // 详情
+            layer.open({
+                type: 2,
+                title: data.activityName+" - 活动详情",
+                area:['800px','550px'],
+                shade: 0.3,
+                offset: "5%",
+                content:'activity_candidate.html?activityId='+data.activityId
+            });
+        }
     });
 });

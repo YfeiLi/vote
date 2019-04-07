@@ -13,6 +13,12 @@ public class Voter {
     private String voterId;
 
     /**
+     * 微信唯一号
+     */
+    @Column(name = "wechar_open_id")
+    private String wecharOpenId;
+
+    /**
      * 投票人微信昵称
      */
     @Column(name = "wechar_nickname")
@@ -29,6 +35,12 @@ public class Voter {
      */
     @Column(name = "voter_name")
     private String voterName;
+
+    /**
+     * 性别（1男；2女）
+     */
+    @Column(name = "voter_gender")
+    private Short voterGender;
 
     /**
      * 创建时间
@@ -58,6 +70,24 @@ public class Voter {
      */
     public void setVoterId(String voterId) {
         this.voterId = voterId;
+    }
+
+    /**
+     * 获取微信唯一号
+     *
+     * @return wechar_open_id - 微信唯一号
+     */
+    public String getWecharOpenId() {
+        return wecharOpenId;
+    }
+
+    /**
+     * 设置微信唯一号
+     *
+     * @param wecharOpenId 微信唯一号
+     */
+    public void setWecharOpenId(String wecharOpenId) {
+        this.wecharOpenId = wecharOpenId;
     }
 
     /**
@@ -112,6 +142,24 @@ public class Voter {
      */
     public void setVoterName(String voterName) {
         this.voterName = voterName;
+    }
+
+    /**
+     * 获取性别（1男；2女）
+     *
+     * @return voter_gender - 性别（1男；2女）
+     */
+    public Short getVoterGender() {
+        return voterGender;
+    }
+
+    /**
+     * 设置性别（1男；2女）
+     *
+     * @param voterGender 性别（1男；2女）
+     */
+    public void setVoterGender(Short voterGender) {
+        this.voterGender = voterGender;
     }
 
     /**

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soar.vote.persistence.mapper.VoterSessionMapper" >
+  <resultMap id="BaseResultMap" type="com.soar.vote.persistence.entity.VoterSession" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="voter_id" property="voterId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="expried_time" property="expiredTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <select id="selectByContent" resultMap="BaseResultMap">
+    select *
+    from voter_session
+    where content = #{content}
+    and expired_time > now()
+  </select>
+</mapper>

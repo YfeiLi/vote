@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @author liyifei
  * @version 1.0
  **/
-@RequestMapping("vote/scope")
+@RequestMapping("scope")
 @RestController
 public class VoteScopeController {
 

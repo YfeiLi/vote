@@ -1,6 +1,8 @@
 package com.soar.vote.persistence.mapper;
 
+import com.soar.vote.common.dto.request.FindActivityCandidateRequestDTO;
 import com.soar.vote.common.dto.request.FindVoteActivityRequestDTO;
+import com.soar.vote.common.dto.response.FindActivityCandidateResponseDTO;
 import com.soar.vote.common.dto.response.FindVoteActivityResponseDTO;
 import com.soar.vote.persistence.entity.VoteActivity;
 import tk.mybatis.mapper.common.Mapper;
@@ -17,4 +19,7 @@ public interface VoteActivityMapper extends Mapper<VoteActivity> {
      * @return 活动列表
      */
     List<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO);
+
+
+    List<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO);
 }

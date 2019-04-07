@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.io.BufferedWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -35,18 +34,20 @@ public class CandidateServiceImpl implements CandidateService {
     private CandidateMapper candidateMapper;
 
     /** 照片保存路径 */
-    private static String PIC_BASE_URL="/data/upload/pic/candidate/";
+    private static String PIC_BASE_DIR ="/home/vote/vote-front/upload/pic/candidate/";
+    /** 照片访问路径 */
+    private static String PIC_BASE_URL = "http://localhost:8101/upload/pic/candidate/";
 
     @Override
     public String add(AddCandidateRequestDTO requestDTO) throws Exception {
 
-        String candidateId = UUIDUtil.getHashID(16);
-        String fileName = PIC_BASE_URL+System.currentTimeMillis()+".jpg";
-        Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(),fileName);
+        String candidateId = UUIDUtil.getHashID(12);
+        String fileName = System.currentTimeMillis()+".jpg";
+        Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(), PIC_BASE_DIR+fileName);
         Candidate entity = new Candidate();
         BeanUtils.copyProperties(requestDTO,entity);
         entity.setCandidateId(candidateId);
-        entity.setPhotoUrl(fileName);
+        entity.setPhotoUrl(PIC_BASE_URL+fileName);
         entity.setCreateTime(new Date());
         candidateMapper.insertSelective(entity);
         return candidateId;
@@ -82,9 +83,9 @@ public class CandidateServiceImpl implements CandidateService {
         Candidate entity = new Candidate();
         BeanUtils.copyProperties(requestDTO,entity);
         if(!StringUtils.isEmpty(requestDTO.getPhoto())){
-            String fileName = PIC_BASE_URL+System.currentTimeMillis()+".jpg";
-            Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(),fileName);
-            entity.setPhotoUrl(fileName);
+            String fileName = System.currentTimeMillis()+".jpg";
+            Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(),PIC_BASE_DIR+fileName);
+            entity.setPhotoUrl(PIC_BASE_URL+fileName);
         }
         entity.setCandidateId(candidateId);
         entity.setUpdateTime(new Date());
