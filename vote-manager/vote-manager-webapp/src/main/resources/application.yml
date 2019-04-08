@@ -1,7 +1,9 @@
 server:
-  port: 8100
-  servlet:
-    context-path: /vote-manager
+  port: 443
+  ssl:
+    key-store: classpath:server.jks
+    keyStoreType: JKS
+    key-store-password: Ap3#$qT!K7gxJSu0
 
 spring:
   application:

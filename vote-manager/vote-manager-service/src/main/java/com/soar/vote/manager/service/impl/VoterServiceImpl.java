@@ -2,6 +2,7 @@ package com.soar.vote.manager.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.soar.vote.common.dto.request.VoteRequestDTO;
+import com.soar.vote.common.dto.request.VoterLoginRequestDTO;
 import com.soar.vote.common.dto.response.VoterLoginResponseDTO;
 import com.soar.vote.common.util.HttpUtil;
 import com.soar.vote.common.util.UUIDUtil;
@@ -48,19 +49,34 @@ public class VoterServiceImpl implements VoterService {
     private VoteActivityMapper voteActivityMapper;
 
     @Override
-    public VoterLoginResponseDTO login(String jsCode) throws Exception {
+    public VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) throws Exception {
 
         VoterLoginResponseDTO responseDTO = new VoterLoginResponseDTO();
         Date current = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(current);
+        calendar.add(Calendar.HOUR,2);
+        Date expiredTime = calendar.getTime();
+        responseDTO.setExpiredTime(expiredTime);
 
         // 调用微信登录接口
-        Map<String,String> wxResult = wxLogin(jsCode);
+        Map<String,String> wxResult = wxLogin(requestDTO.getJsCode());
         if(wxResult == null){
             throw new RuntimeException("调用微信登录接口失败");
         }
         String openId = wxResult.get("openid");
         String sessionKey = wxResult.get("session_key");
         responseDTO.setSession(sessionKey);
+
+        // 查询登录令牌
+        VoterSession sessionSelectResult = voterSessionMapper.selectByPrimaryKey(sessionKey);
+        if(sessionSelectResult != null){
+            // 已存在则修改有效期
+            sessionSelectResult.setExpiredTime(expiredTime);
+            voterSessionMapper.updateByPrimaryKeySelective(sessionSelectResult);
+            responseDTO.setOldUser(true);
+            return responseDTO;
+        }
 
         // 查询投票人
         Voter voterSelectParams = new Voter();
@@ -79,17 +95,12 @@ public class VoterServiceImpl implements VoterService {
         }
 
         // 保存登录令牌
-        VoterSession voterSession = new VoterSession();
-        voterSession.setContent(sessionKey);
-        voterSession.setVoterId(voter.getVoterId());
-        voterSession.setCreateTime(current);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(current);
-        calendar.add(Calendar.HOUR,2);
-        Date expriedTime = calendar.getTime();
-        voterSession.setExpiredTime(expriedTime);
-        voterSessionMapper.insertSelective(voterSession);
-        responseDTO.setExpiredTime(expriedTime);
+        VoterSession sessionInsertParams = new VoterSession();
+        sessionInsertParams.setSessionContent(sessionKey);
+        sessionInsertParams.setVoterId(voter.getVoterId());
+        sessionInsertParams.setCreateTime(current);
+        sessionInsertParams.setExpiredTime(expiredTime);
+        voterSessionMapper.insertSelective(sessionInsertParams);
 
         // 返回
         return responseDTO;

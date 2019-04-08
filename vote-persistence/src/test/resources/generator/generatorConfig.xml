@@ -6,7 +6,7 @@
 
 <generatorConfiguration>
     <classPathEntry
-            location="D:\Document\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+            location="C:\Users\29542\.m2\repository_soar\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
@@ -39,9 +39,9 @@
         <table tableName="coupon" enableSelectByExample="false"/>
         <table tableName="activity_candidate" enableSelectByExample="false"/>
         <table tableName="vote_activity" enableSelectByExample="false"/>
+        <table tableName="voter" enableSelectByExample="false"/>
+        <table tableName="base_config" enableSelectByExample="false"/>-->
         <table tableName="voter_session" enableSelectByExample="false"/>
-        <table tableName="voter" enableSelectByExample="false"/>-->
-        <table tableName="base_config" enableSelectByExample="false"/>
 
     </context>
 </generatorConfiguration>

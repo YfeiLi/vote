@@ -1,4 +1,4 @@
-drop table if exists Candidate;
+drop table if exists candidate;
 
 drop table if exists activity_candidate;
 
@@ -21,9 +21,9 @@ drop table if exists voter;
 drop table if exists voter_session;
 
 /*==============================================================*/
-/* Table: Candidate                                             */
+/* Table: candidate                                             */
 /*==============================================================*/
-create table Candidate
+create table candidate
 (
    candidate_id         varchar(32) not null comment '候选者编号',
    candidate_name       varchar(32) comment '候选者姓名',
@@ -35,7 +35,7 @@ create table Candidate
    primary key (candidate_id)
 );
 
-alter table Candidate comment '候选人';
+alter table candidate comment '候选人';
 
 /*==============================================================*/
 /* Table: activity_candidate                                    */
@@ -198,10 +198,11 @@ alter table voter comment '投票人';
 /*==============================================================*/
 create table voter_session
 (
-   content         varchar(128) comment '令牌主体',
-   voter_id        varchar(32) comment '投票人编号',
-   create_time     datetime comment '创建时间',
-   expired_time    datetime comment '失效时间'
+   session_content   varchar(128) comment '令牌主体',
+   voter_id          varchar(32) comment '投票人编号',
+   create_time       datetime comment '创建时间',
+   expired_time      datetime comment '失效时间',
+   primary key (session_content)
 );
 
 alter table voter comment '投票人授权令牌';

@@ -11,7 +11,7 @@ layui.use(['table','form','element','jquery'], function(){
     table.render({
         id: 'candidateList'
         ,elem: '#candidateList'
-        ,url: 'http://localhost:8100/vote-manager/activity/candidate'
+        ,url: 'https://www.yfei.site/activity/candidate'
         ,height: 'full-100'
         ,where: {
             activityId: activityId

@@ -8,7 +8,9 @@ public class VoterSession {
     /**
      * 令牌主体
      */
-    private String content;
+    @Id
+    @Column(name = "session_content")
+    private String sessionContent;
 
     /**
      * 投票人编号
@@ -31,19 +33,19 @@ public class VoterSession {
     /**
      * 获取令牌主体
      *
-     * @return content - 令牌主体
+     * @return session_content - 令牌主体
      */
-    public String getContent() {
-        return content;
+    public String getSessionContent() {
+        return sessionContent;
     }
 
     /**
      * 设置令牌主体
      *
-     * @param content 令牌主体
+     * @param sessionContent 令牌主体
      */
-    public void setContent(String content) {
-        this.content = content;
+    public void setSessionContent(String sessionContent) {
+        this.sessionContent = sessionContent;
     }
 
     /**
@@ -85,7 +87,7 @@ public class VoterSession {
     /**
      * 获取失效时间
      *
-     * @return expried_time - 失效时间
+     * @return expired_time - 失效时间
      */
     public Date getExpiredTime() {
         return expiredTime;

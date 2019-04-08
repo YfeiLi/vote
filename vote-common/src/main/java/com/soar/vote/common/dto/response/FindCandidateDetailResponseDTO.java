@@ -22,7 +22,7 @@ public class FindCandidateDetailResponseDTO implements Serializable {
     private String candidateName;
 
     /** 照片 */
-    private String photo;
+    private String photoUrl;
 
     /** 详细描述 */
     private String description;
@@ -46,12 +46,12 @@ public class FindCandidateDetailResponseDTO implements Serializable {
         this.candidateName = candidateName;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public String getDescription() {

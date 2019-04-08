@@ -1,16 +1,14 @@
 package com.soar.vote.manager.controller;
 
 import com.soar.vote.common.dto.request.VoteRequestDTO;
+import com.soar.vote.common.dto.request.VoterLoginRequestDTO;
 import com.soar.vote.common.dto.response.VoterLoginResponseDTO;
 import com.soar.vote.manager.service.VoterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <strong>投票人</strong>
@@ -27,9 +25,9 @@ public class VoterController {
     private VoterService voterService;
 
     @PostMapping("/login")
-    ResponseEntity<VoterLoginResponseDTO> login(String jsCode) throws Exception{
+    ResponseEntity<VoterLoginResponseDTO> login(@RequestBody VoterLoginRequestDTO requestDTO) throws Exception{
 
-        VoterLoginResponseDTO responseDTO = voterService.login(jsCode);
+        VoterLoginResponseDTO responseDTO = voterService.login(requestDTO);
         if(responseDTO == null){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

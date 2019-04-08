@@ -34,9 +34,9 @@ public class CandidateServiceImpl implements CandidateService {
     private CandidateMapper candidateMapper;
 
     /** 照片保存路径 */
-    private static String PIC_BASE_DIR ="/home/vote/vote-front/upload/pic/candidate/";
+    private static String PIC_BASE_DIR ="/home/soar/tomcat-upload/webapps/pic/candidate/";
     /** 照片访问路径 */
-    private static String PIC_BASE_URL = "http://localhost:8101/upload/pic/candidate/";
+    private static String PIC_BASE_URL = "https://www.yfei.site:8443/pic/candidate/";
 
     @Override
     public String add(AddCandidateRequestDTO requestDTO) throws Exception {
@@ -72,8 +72,6 @@ public class CandidateServiceImpl implements CandidateService {
         Candidate entity = candidateMapper.selectByPrimaryKey(candidateId);
         FindCandidateDetailResponseDTO responseDTO = new FindCandidateDetailResponseDTO();
         BeanUtils.copyProperties(entity,responseDTO);
-        String photo = Base64PicUtil.getBase64Picture(entity.getPhotoUrl());
-        responseDTO.setPhoto(photo);
         return responseDTO;
     }
 

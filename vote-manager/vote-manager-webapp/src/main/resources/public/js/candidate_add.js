@@ -9,7 +9,7 @@ layui.use(['form','element','jquery','upload'], function(){
     form.on('submit(add)',function(data){
         var params = JSON.stringify(data.field);
         $.ajax({
-            url: "http://localhost:8100/vote-manager/candidate",
+            url: "https://www.yfei.site/candidate",
             type: 'post',
             contentType: 'application/json',
             data: params,

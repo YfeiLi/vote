@@ -10,7 +10,7 @@ layui.use(['table','form','element','jquery','laydate'], function() {
     table.render({
         id: 'activityList'
         ,elem: '#activityList'
-        ,url: 'http://localhost:8100/vote-manager/activity'
+        ,url: 'https://www.yfei.site/activity'
         ,where: {
             startTime: $('#startTime').val(),
             endTime: $('#endTime').val()
@@ -82,7 +82,7 @@ layui.use(['table','form','element','jquery','laydate'], function() {
                 layer.close(index);
                 //向服务端发送删除指令
                 $.ajax({
-                    url:'http://localhost:8100/vote-manager/activity/'+data.activityId,
+                    url:'https://www.yfei.site/activity/'+data.activityId,
                     type:'delete',
                     success:function () {
                         table.reload('activityList');

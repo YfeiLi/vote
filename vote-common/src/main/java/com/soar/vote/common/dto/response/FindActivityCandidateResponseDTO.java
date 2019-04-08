@@ -21,6 +21,9 @@ public class FindActivityCandidateResponseDTO {
     /** 候选人姓名 */
     private String candidateName;
 
+    /** 照片 */
+    private String photoUrl;
+
     /** 票数 */
     private String votes;
 
@@ -46,6 +49,14 @@ public class FindActivityCandidateResponseDTO {
 
     public void setCandidateName(String candidateName) {
         this.candidateName = candidateName;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public String getVotes() {
