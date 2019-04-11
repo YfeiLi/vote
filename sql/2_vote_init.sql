@@ -205,16 +205,17 @@ create table voter_session
    primary key (session_content)
 );
 
-alter table voter comment '投票人授权令牌';
+alter table voter_session comment '投票人授权令牌';
 
 /*==============================================================*/
 /* Table: base_config                                           */
 /*==============================================================*/
 create table base_config
 (
-   name     varchar(64) comment '名称',
-   value    varchar(128) comment '值',
-   primary key (name)
+   config_id       varchar(32) comment '配置编号',
+   config_name     varchar(64) comment '配置名称',
+   config_value    varchar(128) comment '配置值',
+   primary key (config_id)
 );
 
-alter table voter comment '基础配置';
+alter table base_config comment '基础配置';

@@ -5,49 +5,75 @@ import javax.persistence.*;
 @Table(name = "base_config")
 public class BaseConfig {
     /**
-     * 名称
+     * 配置编号
      */
     @Id
-    private String name;
+    @Column(name = "config_id")
+    private String configId;
 
     /**
-     * 值
+     * 配置名称
      */
-    private String value;
+    @Column(name = "config_name")
+    private String configName;
 
     /**
-     * 获取名称
+     * 配置值
+     */
+    @Column(name = "config_value")
+    private String configValue;
+
+    /**
+     * 获取配置编号
      *
-     * @return name - 名称
+     * @return config_id - 配置编号
      */
-    public String getName() {
-        return name;
+    public String getConfigId() {
+        return configId;
     }
 
     /**
-     * 设置名称
+     * 设置配置编号
      *
-     * @param name 名称
+     * @param configId 配置编号
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setConfigId(String configId) {
+        this.configId = configId;
     }
 
     /**
-     * 获取值
+     * 获取配置名称
      *
-     * @return value - 值
+     * @return config_name - 配置名称
      */
-    public String getValue() {
-        return value;
+    public String getConfigName() {
+        return configName;
     }
 
     /**
-     * 设置值
+     * 设置配置名称
      *
-     * @param value 值
+     * @param configName 配置名称
      */
-    public void setValue(String value) {
-        this.value = value;
+    public void setConfigName(String configName) {
+        this.configName = configName;
+    }
+
+    /**
+     * 获取配置值
+     *
+     * @return config_value - 配置值
+     */
+    public String getConfigValue() {
+        return configValue;
+    }
+
+    /**
+     * 设置配置值
+     *
+     * @param configValue 配置值
+     */
+    public void setConfigValue(String configValue) {
+        this.configValue = configValue;
     }
 }

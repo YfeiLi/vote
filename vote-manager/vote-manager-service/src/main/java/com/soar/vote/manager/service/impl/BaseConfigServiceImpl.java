@@ -6,6 +6,8 @@ import com.soar.vote.persistence.mapper.BaseConfigMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <strong>基础配置</strong>
  * date: 7/4/2019
@@ -20,12 +22,18 @@ public class BaseConfigServiceImpl implements BaseConfigService {
     private BaseConfigMapper baseConfigMapper;
 
     @Override
-    public String find(String name) {
+    public List<BaseConfig> find() {
 
-        BaseConfig selectResult = baseConfigMapper.selectByPrimaryKey(name);
+        return baseConfigMapper.selectAll();
+    }
+
+    @Override
+    public BaseConfig find(String configId) {
+
+        BaseConfig selectResult = baseConfigMapper.selectByPrimaryKey(configId);
         if(selectResult == null){
             return null;
         }
-        return selectResult.getValue();
+        return selectResult;
     }
 }

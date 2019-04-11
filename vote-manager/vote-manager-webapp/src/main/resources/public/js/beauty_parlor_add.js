@@ -23,7 +23,7 @@ layui.use(['form','element','jquery'], function(){
     });
 
     // 设置下拉框
-    $.getJSON("/vote-manager/js/province.json",function(data){
+    $.getJSON("../../js/province.json",function(data){
         $.each(data, function (index, item) {
             $('#scopeParent').append(new Option(item, index));// 下拉菜单里添加元素
             var index = parent.layer.getFrameIndex(window.name);

@@ -7,17 +7,12 @@ import com.soar.vote.common.dto.response.VoterLoginResponseDTO;
 import com.soar.vote.common.util.HttpUtil;
 import com.soar.vote.common.util.UUIDUtil;
 import com.soar.vote.manager.service.VoterService;
-import com.soar.vote.persistence.entity.ActivityVoter;
-import com.soar.vote.persistence.entity.VoteActivity;
-import com.soar.vote.persistence.entity.Voter;
-import com.soar.vote.persistence.entity.VoterSession;
-import com.soar.vote.persistence.mapper.ActivityVoterMapper;
-import com.soar.vote.persistence.mapper.VoteActivityMapper;
-import com.soar.vote.persistence.mapper.VoterMapper;
-import com.soar.vote.persistence.mapper.VoterSessionMapper;
+import com.soar.vote.persistence.entity.*;
+import com.soar.vote.persistence.mapper.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Calendar;
@@ -47,6 +42,9 @@ public class VoterServiceImpl implements VoterService {
 
     @Autowired
     private VoteActivityMapper voteActivityMapper;
+
+    @Autowired
+    private ActivityCandidateMapper activityCandidateMapper;
 
     @Override
     public VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) throws Exception {
@@ -107,6 +105,7 @@ public class VoterServiceImpl implements VoterService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public String vote(VoteRequestDTO requestDTO) throws Exception {
 
         // 校验登录令牌
@@ -120,18 +119,42 @@ public class VoterServiceImpl implements VoterService {
         ActivityVoter activityVoterSelectParams = new ActivityVoter();
         activityVoterSelectParams.setVoterId(voterId);
         activityVoterSelectParams.setActivityId(requestDTO.getActivityId());
-        ActivityVoter activityVoterSelectResult = activityVoterMapper.selectOne(activityVoterSelectParams);
-        if(activityVoterSelectResult == null){
+        ActivityVoter activityVoter = activityVoterMapper.selectOne(activityVoterSelectParams);
+        if(activityVoter == null){
             // 查询活动最大投票数
             VoteActivity activity = voteActivityMapper.selectByPrimaryKey(requestDTO.getActivityId());
+            Short maxVotes = activity.getMaxVotes();
 
             // 添加投票人投票记录
+            activityVoter = new ActivityVoter();
+            activityVoter.setActivityVoterId(UUIDUtil.getUUID());
+            activityVoter.setActivityId(requestDTO.getActivityId());
+            activityVoter.setVoterId(voterId);
+            activityVoter.setRestVotes((short)(maxVotes-1));
+            activityVoter.setCreateTime(new Date());
+            activityVoterMapper.insertSelective(activityVoter);
+        } else{
+            // 判断投票人是否有剩余票数
+            if(activityVoter.getRestVotes() <= 0){
+                return "没有剩余票数";
+            }
 
+            // 查询候选人得票
+            ActivityCandidate activityCandidate = new ActivityCandidate();
+            activityCandidate.setActivityId(requestDTO.getActivityId());
+            activityCandidate.setCandidateId(requestDTO.getCandidateId());
+            activityCandidate = activityCandidateMapper.selectOne(activityCandidate);
+
+            // 修改候选人得票数
+            activityCandidate.setVotes((short)(activityCandidate.getVotes()+1));
+            activityCandidate.setUpdateTime(new Date());
+            activityCandidateMapper.updateByPrimaryKeySelective(activityCandidate);
+
+            // 投票人剩余票数
+            activityVoter.setRestVotes((short)(activityVoter.getRestVotes()-1));
+            activityVoter.setUpdateTime(new Date());
+            activityVoterMapper.updateByPrimaryKeySelective(activityVoter);
         }
-
-        // 判断投票人是否有剩余票数
-
-        // 修改候选人得票/投票人剩余票数
 
         // 返回成功
         return null;

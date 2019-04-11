@@ -34,8 +34,8 @@ public class VoterController {
         return ResponseEntity.ok(responseDTO);
     }
 
-    @PutMapping("/vote")
-    ResponseEntity<String> vote(VoteRequestDTO requestDTO) throws Exception {
+    @PostMapping("/vote")
+    ResponseEntity<String> vote(@RequestBody VoteRequestDTO requestDTO) throws Exception {
 
         String errorMsg = voterService.vote(requestDTO);
         return ResponseEntity.ok(errorMsg);

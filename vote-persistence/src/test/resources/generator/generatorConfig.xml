@@ -40,8 +40,8 @@
         <table tableName="activity_candidate" enableSelectByExample="false"/>
         <table tableName="vote_activity" enableSelectByExample="false"/>
         <table tableName="voter" enableSelectByExample="false"/>
-        <table tableName="base_config" enableSelectByExample="false"/>-->
-        <table tableName="voter_session" enableSelectByExample="false"/>
+        <table tableName="voter_session" enableSelectByExample="false"/>-->
+        <table tableName="base_config" enableSelectByExample="false"/>
 
     </context>
 </generatorConfiguration>

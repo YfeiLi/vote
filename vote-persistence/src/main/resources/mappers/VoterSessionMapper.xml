@@ -14,7 +14,7 @@
   <select id="selectByContent" resultMap="BaseResultMap">
     select *
     from voter_session
-    where content = #{content}
+    where session_content = #{sessionContent}
     and expired_time &gt; now()
   </select>
 </mapper>
