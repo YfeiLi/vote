@@ -2,6 +2,7 @@ package com.soar.vote.manager.controller;
 
 import com.soar.vote.common.dto.request.VoteRequestDTO;
 import com.soar.vote.common.dto.request.VoterLoginRequestDTO;
+import com.soar.vote.common.dto.response.VoteResponseDTO;
 import com.soar.vote.common.dto.response.VoterLoginResponseDTO;
 import com.soar.vote.manager.service.VoterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class VoterController {
     }
 
     @PostMapping("/vote")
-    ResponseEntity<String> vote(@RequestBody VoteRequestDTO requestDTO) throws Exception {
+    ResponseEntity<VoteResponseDTO> vote(@RequestBody VoteRequestDTO requestDTO) throws Exception {
 
-        String errorMsg = voterService.vote(requestDTO);
+        VoteResponseDTO errorMsg = voterService.vote(requestDTO);
         return ResponseEntity.ok(errorMsg);
     }
 

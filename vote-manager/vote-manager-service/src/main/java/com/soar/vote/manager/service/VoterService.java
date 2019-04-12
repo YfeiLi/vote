@@ -2,6 +2,7 @@ package com.soar.vote.manager.service;
 
 import com.soar.vote.common.dto.request.VoteRequestDTO;
 import com.soar.vote.common.dto.request.VoterLoginRequestDTO;
+import com.soar.vote.common.dto.response.VoteResponseDTO;
 import com.soar.vote.common.dto.response.VoterLoginResponseDTO;
 
 /**
@@ -28,5 +29,5 @@ public interface VoterService {
      * @date 7/4/2019
      * @return 错误信息
      */
-    String vote(VoteRequestDTO requestDTO) throws Exception;
+    VoteResponseDTO vote(VoteRequestDTO requestDTO) throws Exception;
 }

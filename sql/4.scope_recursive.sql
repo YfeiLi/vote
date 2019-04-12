@@ -1,20 +1,20 @@
-DROP FUNCTION IF EXISTS queryChildScope;
+drop function if exists queryChildScope;
 delimiter //
-CREATE FUNCTION queryScopeRecursive(scopeId VARCHAR(4000))
-  RETURNS VARCHAR(4000)
-  BEGIN
-    DECLARE sTemp VARCHAR(4000);
-    DECLARE sTempChd VARCHAR(4000);
+create function queryScopeRecursive(scopeId varchar(4000))
+  returns varchar(4000)
+  begin
+    declare sTemp varchar(4000);
+    declare sTempChd varchar(4000);
 
-    SET sTemp='';
-    SET sTempChd = CAST(scopeId AS CHAR);
+    set sTemp='';
+    set sTempChd = cast(scopeId as char);
 
-    WHILE sTempChd IS NOT NULL DO
-      SET sTemp= CONCAT(sTemp,',',sTempChd);
-      SELECT GROUP_CONCAT(scope_id) INTO sTempChd FROM vote_scope WHERE FIND_IN_SET(scope_parent,sTempChd)>0;
-    END WHILE;
-    SET sTemp := SUBSTR(sTemp,2);
-    RETURN sTemp;
-  END;
+    while sTempChd is not null do
+      set sTemp= concat(sTemp,',',sTempChd);
+      select group_concat(scope_id) into sTempChd from vote_scope where find_in_set(scope_parent,sTempChd)>0;
+    end while;
+    set sTemp := substr(sTemp,2);
+    return sTemp;
+  end;
 //
 delimiter ;

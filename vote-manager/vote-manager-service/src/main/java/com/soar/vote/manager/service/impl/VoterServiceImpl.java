@@ -3,6 +3,7 @@ package com.soar.vote.manager.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.soar.vote.common.dto.request.VoteRequestDTO;
 import com.soar.vote.common.dto.request.VoterLoginRequestDTO;
+import com.soar.vote.common.dto.response.VoteResponseDTO;
 import com.soar.vote.common.dto.response.VoterLoginResponseDTO;
 import com.soar.vote.common.util.HttpUtil;
 import com.soar.vote.common.util.UUIDUtil;
@@ -106,12 +107,15 @@ public class VoterServiceImpl implements VoterService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public String vote(VoteRequestDTO requestDTO) throws Exception {
+    public VoteResponseDTO vote(VoteRequestDTO requestDTO) throws Exception {
+
+        VoteResponseDTO responseDTO = new VoteResponseDTO();
 
         // 校验登录令牌
         VoterSession voterSession = voterSessionMapper.selectByContent(requestDTO.getSession());
         if(voterSession == null){
-            return "登录令牌已失效";
+            responseDTO.setErrorMsg("登录令牌已失效");
+            return responseDTO;
         }
         String voterId = voterSession.getVoterId();
 
@@ -133,10 +137,14 @@ public class VoterServiceImpl implements VoterService {
             activityVoter.setRestVotes((short)(maxVotes-1));
             activityVoter.setCreateTime(new Date());
             activityVoterMapper.insertSelective(activityVoter);
+
+            // 赠送优惠券
+            responseDTO.setCouponId(String.valueOf(System.currentTimeMillis()));
         } else{
             // 判断投票人是否有剩余票数
             if(activityVoter.getRestVotes() <= 0){
-                return "没有剩余票数";
+                responseDTO.setErrorMsg("没有剩余票数");
+                return responseDTO;
             }
 
             // 查询候选人得票
@@ -157,7 +165,7 @@ public class VoterServiceImpl implements VoterService {
         }
 
         // 返回成功
-        return null;
+        return responseDTO;
     }
 
     /**
