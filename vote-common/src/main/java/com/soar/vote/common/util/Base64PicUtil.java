@@ -1,10 +1,11 @@
 package com.soar.vote.common.util;
 
+import javax.imageio.ImageIO;
 import javax.xml.bind.DatatypeConverter;
-
+import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -21,7 +22,7 @@ public class Base64PicUtil {
      * @param base64Str base64照片
      * @param path 路径
      */
-    public static void saveBase64Picture(String base64Str, String path) throws IOException {
+    public static Map<String,Short> saveBase64Picture(String base64Str, String path) throws IOException {
 
         byte[] bytes;
         bytes = DatatypeConverter.parseBase64Binary(base64Str);
@@ -34,6 +35,13 @@ public class Base64PicUtil {
         BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
         out.write(bytes);
         out.close();
+        BufferedImage image = ImageIO.read(file);
+        Short width = (short)image.getWidth();
+        Short height = (short)image.getHeight();
+        Map<String,Short> result = new HashMap<>(2);
+        result.put("width",width);
+        result.put("height",height);
+        return result;
     }
 
     /**
@@ -60,5 +68,10 @@ public class Base64PicUtil {
 
         //base64编码
         return DatatypeConverter.printBase64Binary(bytes);
+    }
+
+    public static Map<String,Short> getWidthAndHeight(String base64){
+
+        return null;
     }
 }

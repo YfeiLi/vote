@@ -31,6 +31,18 @@ public class Candidate {
     private String photoUrl;
 
     /**
+     * 照片宽度
+     */
+    @Column(name = "photo_width")
+    private Short photoWidth;
+
+    /**
+     * 照片高度
+     */
+    @Column(name = "photo_height")
+    private Short photoHeight;
+
+    /**
      * 详细描述
      */
     private String description;
@@ -117,6 +129,42 @@ public class Candidate {
      */
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    /**
+     * 获取照片宽度
+     *
+     * @return photo_width - 照片宽度
+     */
+    public Short getPhotoWidth() {
+        return photoWidth;
+    }
+
+    /**
+     * 设置照片宽度
+     *
+     * @param photoWidth 照片宽度
+     */
+    public void setPhotoWidth(Short photoWidth) {
+        this.photoWidth = photoWidth;
+    }
+
+    /**
+     * 获取照片高度
+     *
+     * @return photo_height - 照片高度
+     */
+    public Short getPhotoHeight() {
+        return photoHeight;
+    }
+
+    /**
+     * 设置照片高度
+     *
+     * @param photoHeight 照片高度
+     */
+    public void setPhotoHeight(Short photoHeight) {
+        this.photoHeight = photoHeight;
     }
 
     /**

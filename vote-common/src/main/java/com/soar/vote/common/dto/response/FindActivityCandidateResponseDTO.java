@@ -24,6 +24,12 @@ public class FindActivityCandidateResponseDTO {
     /** 照片 */
     private String photoUrl;
 
+    /** 照片宽度 */
+    private Short photoWidth;
+
+    /** 照片高度 */
+    private Short photoHeight;
+
     /** 票数 */
     private String votes;
 
@@ -57,6 +63,22 @@ public class FindActivityCandidateResponseDTO {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public Short getPhotoWidth() {
+        return photoWidth;
+    }
+
+    public void setPhotoWidth(Short photoWidth) {
+        this.photoWidth = photoWidth;
+    }
+
+    public Short getPhotoHeight() {
+        return photoHeight;
+    }
+
+    public void setPhotoHeight(Short photoHeight) {
+        this.photoHeight = photoHeight;
     }
 
     public String getVotes() {

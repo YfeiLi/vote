@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <strong>候选人</strong>
@@ -43,12 +44,14 @@ public class CandidateServiceImpl implements CandidateService {
 
         String candidateId = UUIDUtil.getHashID(12);
         String fileName = System.currentTimeMillis()+".jpg";
-        Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(), PIC_BASE_DIR+fileName);
+        Map<String,Short> picSize = Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(), PIC_BASE_DIR+fileName);
         Candidate entity = new Candidate();
         BeanUtils.copyProperties(requestDTO,entity);
         entity.setCandidateId(candidateId);
         entity.setPhotoUrl(PIC_BASE_URL+fileName);
         entity.setCreateTime(new Date());
+        entity.setPhotoWidth(picSize.get("width"));
+        entity.setPhotoHeight(picSize.get("height"));
         candidateMapper.insertSelective(entity);
         return candidateId;
     }
@@ -82,8 +85,10 @@ public class CandidateServiceImpl implements CandidateService {
         BeanUtils.copyProperties(requestDTO,entity);
         if(!StringUtils.isEmpty(requestDTO.getPhoto())){
             String fileName = System.currentTimeMillis()+".jpg";
-            Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(),PIC_BASE_DIR+fileName);
+            Map<String,Short> picSize = Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(),PIC_BASE_DIR+fileName);
             entity.setPhotoUrl(PIC_BASE_URL+fileName);
+            entity.setPhotoWidth(picSize.get("width"));
+            entity.setPhotoHeight(picSize.get("height"));
         }
         entity.setCandidateId(candidateId);
         entity.setUpdateTime(new Date());

@@ -46,6 +46,8 @@
       ac.candidate_id as candidateId,
       c.candidate_name as candidateName,
       c.photo_url as photoUrl,
+      c.photo_width as photoWidth,
+      c.photo_height as photoHeight,
       ac.votes as votes
     from activity_candidate ac
     left join candidate c on ac.candidate_id = c.candidate_id
