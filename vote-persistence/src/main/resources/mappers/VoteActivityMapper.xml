@@ -33,10 +33,10 @@
         scope_id = #{scopeId}
       </if>
       <if test="startTime!=null">
-        <![CDATA[ start_time >= #{startTime} ]]>
+        <![CDATA[ start_time < #{startTime} ]]>
       </if>
       <if test="endTime!=null">
-        <![CDATA[ and end_time < date_add(#{endTime}, INTERVAL 1 day) ]]>
+        <![CDATA[ and end_time >= date_add(#{endTime}, INTERVAL 1 day) ]]>
       </if>
     </where>
     group by va.activity_id
