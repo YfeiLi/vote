@@ -20,6 +20,12 @@ public interface VoteActivityMapper extends Mapper<VoteActivity> {
      */
     List<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO);
 
-
+    /**
+     * 查询活动候选人
+     * @author liyifei
+     * @date 3/5/2019
+     * @param requestDTO 查询条件
+     * @return 候选人列表
+     */
     List<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO);
 }

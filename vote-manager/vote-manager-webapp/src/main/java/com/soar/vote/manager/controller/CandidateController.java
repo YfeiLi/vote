@@ -56,7 +56,6 @@ public class CandidateController {
     @PutMapping("/{candidateId}")
     ResponseEntity<String> update(@PathVariable String candidateId, UpdateCandidateRequestDTO requestDTO) throws Exception{
 
-        System.out.println("hello");
         candidateService.update(candidateId,requestDTO);
         return ResponseEntity.ok(candidateId);
     }

@@ -47,6 +47,9 @@ public class VoterServiceImpl implements VoterService {
     @Autowired
     private ActivityCandidateMapper activityCandidateMapper;
 
+    @Autowired
+    private VoteRecordMapper voteRecordMapper;
+
     @Override
     public VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) throws Exception {
 
@@ -129,7 +132,7 @@ public class VoterServiceImpl implements VoterService {
             VoteActivity activity = voteActivityMapper.selectByPrimaryKey(requestDTO.getActivityId());
             Short maxVotes = activity.getMaxVotes();
 
-            // 添加投票人投票记录
+            // 添加投票人活动记录
             activityVoter = new ActivityVoter();
             activityVoter.setActivityVoterId(UUIDUtil.getUUID());
             activityVoter.setActivityId(requestDTO.getActivityId());
@@ -158,11 +161,21 @@ public class VoterServiceImpl implements VoterService {
             activityCandidate.setUpdateTime(new Date());
             activityCandidateMapper.updateByPrimaryKeySelective(activityCandidate);
 
-            // 投票人剩余票数
+            // 修改投票人剩余票数
             activityVoter.setRestVotes((short)(activityVoter.getRestVotes()-1));
             activityVoter.setUpdateTime(new Date());
             activityVoterMapper.updateByPrimaryKeySelective(activityVoter);
         }
+
+        // 添加投票记录
+        VoteRecord voteRecord = new VoteRecord();
+        voteRecord.setRecordId(UUIDUtil.getUUID());
+        voteRecord.setActivityId(requestDTO.getActivityId());
+        voteRecord.setCandidateId(requestDTO.getCandidateId());
+        voteRecord.setVoterId(voterId);
+        voteRecord.setCreatTime(new Date());
+        voteRecord.setUpdateTime(new Date());
+        voteRecordMapper.insertSelective(voteRecord);
 
         // 返回成功
         return responseDTO;

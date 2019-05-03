@@ -18,6 +18,9 @@ import java.util.Date;
 public class FindVoteActivityRequestDTO extends PageRequestDTO implements Serializable {
     private static final long serialVersionUID = -6510958441816540110L;
 
+    /** 区域编号 */
+    private String scopeId;
+
     /** 开始时间 */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
@@ -25,6 +28,14 @@ public class FindVoteActivityRequestDTO extends PageRequestDTO implements Serial
     /** 结束时间 */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
+
+    public String getScopeId() {
+        return scopeId;
+    }
+
+    public void setScopeId(String scopeId) {
+        this.scopeId = scopeId;
+    }
 
     public Date getStartTime() {
         return startTime;

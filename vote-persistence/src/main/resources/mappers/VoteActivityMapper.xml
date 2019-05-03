@@ -29,6 +29,9 @@
     left join vote_scope vs on va.scope_id = vs.scope_id
     left join activity_candidate ac on va.activity_id = ac.activity_id
     <where>
+      <if test="scopeId != null and scopeId != ''">
+        scope_id = #{scopeId}
+      </if>
       <if test="startTime!=null">
         <![CDATA[ start_time >= #{startTime} ]]>
       </if>
