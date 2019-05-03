@@ -34,6 +34,13 @@
         <if test="scopeLevel != null">
           and a.scope_level = #{scopeLevel}
         </if>
+        <if test="hasChild != null and hasChild == true">
+          and a.scope_id in (
+            select scope_parent
+            from vote_scope
+            group by scope_parent
+          )
+        </if>
       </where>
       order by a.create_time desc
     </select>

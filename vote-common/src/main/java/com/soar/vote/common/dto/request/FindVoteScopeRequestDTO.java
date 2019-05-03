@@ -25,6 +25,9 @@ public class FindVoteScopeRequestDTO extends PageRequestDTO implements Serializa
     /** 区域等级 */
     private Short scopeLevel;
 
+    /** 是否有子区域 */
+    private Boolean hasChild;
+
     public String getScopeName() {
         return scopeName;
     }
@@ -47,5 +50,13 @@ public class FindVoteScopeRequestDTO extends PageRequestDTO implements Serializa
 
     public void setScopeLevel(Short scopeLevel) {
         this.scopeLevel = scopeLevel;
+    }
+
+    public Boolean getHasChild() {
+        return hasChild;
+    }
+
+    public void setHasChild(Boolean hasChild) {
+        this.hasChild = hasChild;
     }
 }
