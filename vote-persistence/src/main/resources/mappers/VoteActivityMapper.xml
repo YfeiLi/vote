@@ -30,10 +30,10 @@
     left join activity_candidate ac on va.activity_id = ac.activity_id
     <where>
       <if test="scopeId != null and scopeId != ''">
-        scope_id = #{scopeId}
+        va.scope_id = #{scopeId}
       </if>
       <if test="startTime!=null">
-        <![CDATA[ start_time < #{startTime} ]]>
+        <![CDATA[ and start_time < #{startTime} ]]>
       </if>
       <if test="endTime!=null">
         <![CDATA[ and end_time >= date_add(#{endTime}, INTERVAL 1 day) ]]>
