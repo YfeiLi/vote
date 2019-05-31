@@ -191,8 +191,8 @@ public class VoterServiceImpl implements VoterService {
     private Map<String,String> wxLogin(String jsCode) {
 
         String url = "https://api.weixin.qq.com/sns/jscode2session";
-        String appId = "wx60924f734f50190c";
-        String secret = "1267c802ffedc5dcf30c6a2311af433d";
+        String appId = "wx659151a06c529cec";
+        String secret = "9504c5f5fb6dcbe7d23422c58ffe85ef";
         String grantType = "authorization_code";
 
         Map<String,String> reqMap = new HashMap<>();
