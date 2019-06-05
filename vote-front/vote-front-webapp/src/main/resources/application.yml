@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   application:
-    name: vote-manager
+    name: vote-front
   datasource:
     url: jdbc:mysql://localhost:3306/vote?characterEncoding=utf8
     username: vote

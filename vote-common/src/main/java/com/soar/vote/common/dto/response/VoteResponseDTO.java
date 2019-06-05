@@ -18,7 +18,7 @@ public class VoteResponseDTO implements Serializable {
     /** 优惠券编号（不为空则中奖） */
     private String couponId;
 
-    /** 错误编号 */
+    /** 错误信息 */
     private String errorMsg;
 
     public String getCouponId() {
