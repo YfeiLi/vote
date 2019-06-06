@@ -35,9 +35,9 @@ public class CandidateServiceImpl implements CandidateService {
     private CandidateMapper candidateMapper;
 
     /** 照片保存路径 */
-    private static String PIC_BASE_DIR ="/home/soar/picture/candidate/";
+    private static String PIC_BASE_DIR ="/home/soar/picture/vote/candidate/";
     /** 照片访问路径 */
-    private static String PIC_BASE_URL = "https://www.yfei.site:8443/pic/candidate/";
+    private static String PIC_BASE_URL = "https://www.yfei.site/picture/vote/candidate/";
 
     @Override
     public String add(AddCandidateRequestDTO requestDTO) throws Exception {
