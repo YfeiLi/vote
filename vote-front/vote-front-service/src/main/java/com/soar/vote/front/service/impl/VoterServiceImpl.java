@@ -85,7 +85,11 @@ public class VoterServiceImpl implements VoterService {
         voterSelectParams.setWecharOpenId(openId);
         Voter voter = voterMapper.selectOne(voterSelectParams);
         if(voter != null){
-            responseDTO.setOldUser(true);
+            if(StringUtils.isEmpty(voter.getWecharNickname())){
+                responseDTO.setOldUser(false);
+            } else{
+                responseDTO.setOldUser(true);
+            }
         } else{
             // 不存在则创建
             responseDTO.setOldUser(false);
@@ -126,8 +130,12 @@ public class VoterServiceImpl implements VoterService {
         VoteActivity activity = voteActivityMapper.selectByPrimaryKey(requestDTO.getActivityId());
 
         // 判断活动是否结束
-        if(System.currentTimeMillis()>activity.getEndTime().getTime()){
+        if((System.currentTimeMillis()-1000*60*60*24)>activity.getEndTime().getTime()){
             responseDTO.setErrorMsg("活动已结束");
+            return responseDTO;
+        }
+        if(System.currentTimeMillis()<activity.getStartTime().getTime()){
+            responseDTO.setErrorMsg("活动未开始");
             return responseDTO;
         }
 

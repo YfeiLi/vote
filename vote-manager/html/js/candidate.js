@@ -19,7 +19,7 @@ layui.use(['table','form','element','jquery'], function(){
         ,cols: [[
             {field:'candidateId', title: '编号'}
             ,{field:'candidateName', title: '姓名'}
-            ,{field:'description', title: '详细描述 ', width: 250}
+            ,{field:'description', title: '详细描述 ', width: 220}
             ,{field:'createTime', title: '添加时间',templet: '<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
             ,{fixed: 'right', title:'操作', toolbar: '#bar', width:120}
         ]]
