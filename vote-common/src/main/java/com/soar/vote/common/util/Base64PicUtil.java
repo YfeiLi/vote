@@ -1,5 +1,7 @@
 package com.soar.vote.common.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.imageio.ImageIO;
 import javax.xml.bind.DatatypeConverter;
 import java.awt.image.BufferedImage;
@@ -15,6 +17,7 @@ import java.util.Map;
  * @author liyifei
  * @version 1.0
  **/
+@Slf4j
 public class Base64PicUtil {
 
     /**
@@ -22,20 +25,34 @@ public class Base64PicUtil {
      * @param base64Str base64照片
      * @param path 路径
      */
-    public static Map<String,Short> saveBase64Picture(String base64Str, String path) throws IOException {
+    public static Map<String,Short> saveBase64Picture(String base64Str, String path) {
 
         byte[] bytes;
         bytes = DatatypeConverter.parseBase64Binary(base64Str);
         File file = new File(path);
         File dir = new File(file.getParent());
         if(!dir.exists()){
-            dir.mkdirs();
+            boolean flag = dir.mkdirs();
         }
-        Boolean flag = file.createNewFile();
-        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
-        out.write(bytes);
-        out.close();
-        BufferedImage image = ImageIO.read(file);
+        BufferedImage image;
+        BufferedOutputStream out = null;
+        try {
+            Boolean flag = file.createNewFile();
+            out = new BufferedOutputStream(new FileOutputStream(file));
+            out.write(bytes);
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            log.error("写入图片异常",e);
+            return null;
+        } finally{
+            if(out!=null){
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    log.error("关闭输出流异常",e);
+                }
+            }
+        }
         Short width = (short)image.getWidth();
         Short height = (short)image.getHeight();
         Map<String,Short> result = new HashMap<>(2);
@@ -57,13 +74,22 @@ public class Base64PicUtil {
         if(!file.exists()){
             return null;
         }
+        BufferedInputStream in = null;
         try{
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+            in = new BufferedInputStream(new FileInputStream(file));
             bytes = new byte[in.available()];
             int n = in.read(bytes);
-            in.close();
         }catch(IOException e){
+            log.error("获取图片异常",e);
             return null;
+        }finally {
+            if(in!=null){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    log.error("关闭输入流异常",e);
+                }
+            }
         }
 
         //base64编码

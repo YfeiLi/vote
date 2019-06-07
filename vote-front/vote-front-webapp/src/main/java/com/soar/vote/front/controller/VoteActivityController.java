@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.soar.vote.common.dto.request.FindActivityCandidateRequestDTO;
 import com.soar.vote.common.dto.request.FindVoteActivityRequestDTO;
 import com.soar.vote.common.dto.response.FindActivityCandidateResponseDTO;
+import com.soar.vote.common.dto.response.FindVoteActivityDetailResponseDTO;
 import com.soar.vote.common.dto.response.FindVoteActivityResponseDTO;
 import com.soar.vote.front.service.VoteActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,22 @@ public class VoteActivityController {
     @Autowired
     private VoteActivityService voteActivityService;
 
+    @GetMapping("/{activityId}")
+    ResponseEntity<FindVoteActivityDetailResponseDTO> find(@PathVariable String activityId) {
+
+        FindVoteActivityDetailResponseDTO responseDTO = voteActivityService.find(activityId);
+        return ResponseEntity.ok(responseDTO);
+    }
+
     @GetMapping
-    ResponseEntity<PageInfo<FindVoteActivityResponseDTO>> find(FindVoteActivityRequestDTO requestDTO) throws Exception{
+    ResponseEntity<PageInfo<FindVoteActivityResponseDTO>> find(FindVoteActivityRequestDTO requestDTO) {
 
         PageInfo<FindVoteActivityResponseDTO> page = voteActivityService.find(requestDTO);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/candidate")
-    ResponseEntity<PageInfo<FindActivityCandidateResponseDTO>> findCandidate(FindActivityCandidateRequestDTO requestDTO) throws Exception {
+    ResponseEntity<PageInfo<FindActivityCandidateResponseDTO>> findCandidate(FindActivityCandidateRequestDTO requestDTO) {
 
         PageInfo<FindActivityCandidateResponseDTO> page = voteActivityService.findCandidate(requestDTO);
         return ResponseEntity.ok(page);

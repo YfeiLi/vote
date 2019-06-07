@@ -25,7 +25,7 @@ public class VoteScopeController {
     private VoteScopeService voteScopeService;
 
     @GetMapping
-    ResponseEntity<PageInfo<FindVoteScopeResponseDTO>> find(FindVoteScopeRequestDTO requestDTO) throws Exception {
+    ResponseEntity<PageInfo<FindVoteScopeResponseDTO>> find(FindVoteScopeRequestDTO requestDTO) {
 
         PageInfo<FindVoteScopeResponseDTO> page = voteScopeService.find(requestDTO);
         return ResponseEntity.ok(page);

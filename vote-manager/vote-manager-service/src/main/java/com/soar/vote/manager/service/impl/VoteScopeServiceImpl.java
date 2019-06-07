@@ -33,7 +33,7 @@ public class VoteScopeServiceImpl implements VoteScopeService {
     private VoteScopeMapper voteScopeMapper;
 
     @Override
-    public String add(AddVoteScopeRequestDTO requestDTO) throws Exception {
+    public String add(AddVoteScopeRequestDTO requestDTO) {
 
         VoteScope entity = new VoteScope();
         BeanUtils.copyProperties(requestDTO,entity);
@@ -45,13 +45,13 @@ public class VoteScopeServiceImpl implements VoteScopeService {
     }
 
     @Override
-    public void delete(String scopeId) throws Exception {
+    public void delete(String scopeId) {
 
         voteScopeMapper.deleteByPrimaryKey(scopeId);
     }
 
     @Override
-    public PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) throws Exception {
+    public PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) {
 
         PageHelper.startPage(requestDTO);
         List<FindVoteScopeResponseDTO> list = voteScopeMapper.find(requestDTO);
@@ -59,7 +59,7 @@ public class VoteScopeServiceImpl implements VoteScopeService {
     }
 
     @Override
-    public void update(String scopeId, UpdateVoteScopeRequestDTO requestDTO) throws Exception {
+    public void update(String scopeId, UpdateVoteScopeRequestDTO requestDTO) {
 
         VoteScope entity = new VoteScope();
         BeanUtils.copyProperties(requestDTO,entity);

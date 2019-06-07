@@ -40,11 +40,14 @@ public class CandidateServiceImpl implements CandidateService {
     private static String PIC_BASE_URL = "https://www.yfei.site/picture/vote/candidate/";
 
     @Override
-    public String add(AddCandidateRequestDTO requestDTO) throws Exception {
+    public String add(AddCandidateRequestDTO requestDTO) {
 
         String candidateId = UUIDUtil.getHashID(12);
         String fileName = System.currentTimeMillis()+".jpg";
         Map<String,Short> picSize = Base64PicUtil.saveBase64Picture(requestDTO.getPhoto(), PIC_BASE_DIR+fileName);
+        if(picSize == null){
+            return null;
+        }
         Candidate entity = new Candidate();
         BeanUtils.copyProperties(requestDTO,entity);
         entity.setCandidateId(candidateId);
@@ -57,12 +60,12 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public void delete(String candidateId) throws Exception {
+    public void delete(String candidateId) {
         candidateMapper.deleteByPrimaryKey(candidateId);
     }
 
     @Override
-    public PageInfo<FindCandidateResponseDTO> find(FindCandidateRequestDTO requestDTO) throws Exception {
+    public PageInfo<FindCandidateResponseDTO> find(FindCandidateRequestDTO requestDTO) {
 
         PageHelper.startPage(requestDTO);
         List<FindCandidateResponseDTO> list = candidateMapper.find(requestDTO);
@@ -70,7 +73,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public FindCandidateDetailResponseDTO find(String candidateId) throws Exception {
+    public FindCandidateDetailResponseDTO find(String candidateId) {
 
         Candidate entity = candidateMapper.selectByPrimaryKey(candidateId);
         FindCandidateDetailResponseDTO responseDTO = new FindCandidateDetailResponseDTO();
@@ -79,7 +82,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public void update(String candidateId, UpdateCandidateRequestDTO requestDTO) throws Exception {
+    public void update(String candidateId, UpdateCandidateRequestDTO requestDTO) {
 
         Candidate entity = new Candidate();
         BeanUtils.copyProperties(requestDTO,entity);

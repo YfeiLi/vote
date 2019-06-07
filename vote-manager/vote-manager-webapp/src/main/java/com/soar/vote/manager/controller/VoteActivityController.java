@@ -28,28 +28,28 @@ public class VoteActivityController {
     private VoteActivityService voteActivityService;
 
     @PostMapping
-    ResponseEntity<String> add(@RequestBody AddVoteActivityRequestDTO requestDTO) throws Exception {
+    ResponseEntity<String> add(@RequestBody AddVoteActivityRequestDTO requestDTO) {
 
         String activityId = voteActivityService.add(requestDTO);
         return ResponseEntity.ok(activityId);
     }
 
     @DeleteMapping("/{activityId}")
-    ResponseEntity<String> delete(@PathVariable String activityId) throws Exception {
+    ResponseEntity<String> delete(@PathVariable String activityId) {
 
         voteActivityService.delete(activityId);
         return ResponseEntity.ok(activityId);
     }
 
     @GetMapping
-    ResponseEntity<PageInfo<FindVoteActivityResponseDTO>> find(FindVoteActivityRequestDTO requestDTO) throws Exception{
+    ResponseEntity<PageInfo<FindVoteActivityResponseDTO>> find(FindVoteActivityRequestDTO requestDTO) {
 
         PageInfo<FindVoteActivityResponseDTO> page = voteActivityService.find(requestDTO);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/candidate")
-    ResponseEntity<PageInfo<FindActivityCandidateResponseDTO>> findCandidate(FindActivityCandidateRequestDTO requestDTO) throws Exception {
+    ResponseEntity<PageInfo<FindActivityCandidateResponseDTO>> findCandidate(FindActivityCandidateRequestDTO requestDTO) {
 
         PageInfo<FindActivityCandidateResponseDTO> page = voteActivityService.findCandidate(requestDTO);
         return ResponseEntity.ok(page);

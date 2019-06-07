@@ -21,7 +21,7 @@ public interface VoterService {
      * @param requestDTO 登录参数
      * @return 登录令牌
      */
-    VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) throws Exception;
+    VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) ;
 
     /**
      * 投票
@@ -29,5 +29,5 @@ public interface VoterService {
      * @date 7/4/2019
      * @return 错误信息
      */
-    VoteResponseDTO vote(VoteRequestDTO requestDTO) throws Exception;
+    VoteResponseDTO vote(VoteRequestDTO requestDTO) ;
 }

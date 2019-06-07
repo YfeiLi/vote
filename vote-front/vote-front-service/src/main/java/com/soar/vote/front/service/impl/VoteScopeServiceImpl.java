@@ -25,7 +25,7 @@ public class VoteScopeServiceImpl implements VoteScopeService {
     private VoteScopeMapper voteScopeMapper;
 
     @Override
-    public PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) throws Exception {
+    public PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) {
 
         PageHelper.startPage(requestDTO);
         List<FindVoteScopeResponseDTO> list = voteScopeMapper.find(requestDTO);

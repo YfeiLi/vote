@@ -79,7 +79,7 @@ public class VoteActivityServiceImpl implements VoteActivityService {
     }
 
     @Override
-    public PageInfo<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO) throws Exception {
+    public PageInfo<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO) {
 
         PageHelper.startPage(requestDTO);
         List<FindVoteActivityResponseDTO> list = voteActivityMapper.find(requestDTO);
@@ -87,7 +87,7 @@ public class VoteActivityServiceImpl implements VoteActivityService {
     }
 
     @Override
-    public PageInfo<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO) throws Exception {
+    public PageInfo<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO) {
 
         PageHelper.startPage(requestDTO);
         List<FindActivityCandidateResponseDTO> list = voteActivityMapper.findCandidate(requestDTO);

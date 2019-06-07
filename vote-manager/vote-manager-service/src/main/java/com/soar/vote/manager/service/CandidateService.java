@@ -23,7 +23,7 @@ public interface CandidateService {
      * @param requestDTO 新增内容
      * @return 候选人编号
      */
-    String add(AddCandidateRequestDTO requestDTO) throws Exception;
+    String add(AddCandidateRequestDTO requestDTO) ;
 
     /**
      * 删除候选人
@@ -31,7 +31,7 @@ public interface CandidateService {
      * @date 3/4/2019
      * @param candidateId 候选人编号
      */
-    void delete(String candidateId) throws Exception;
+    void delete(String candidateId) ;
 
     /**
      * 查询候选人列表
@@ -40,7 +40,7 @@ public interface CandidateService {
      * @param requestDTO 查询条件
      * @return 候选人列表
      */
-    PageInfo<FindCandidateResponseDTO> find(FindCandidateRequestDTO requestDTO) throws Exception;
+    PageInfo<FindCandidateResponseDTO> find(FindCandidateRequestDTO requestDTO) ;
 
     /**
      * 查询候选人详情
@@ -49,7 +49,7 @@ public interface CandidateService {
      * @param candidateId 候选人编号
      * @return 候选人
      */
-    FindCandidateDetailResponseDTO find(String candidateId) throws Exception;
+    FindCandidateDetailResponseDTO find(String candidateId) ;
 
     /**
      * 修改候选人
@@ -60,5 +60,5 @@ public interface CandidateService {
      * @param candidateId 候选人编号
      * @param requestDTO 修改内容
      */
-    void update(String candidateId, UpdateCandidateRequestDTO requestDTO) throws Exception;
+    void update(String candidateId, UpdateCandidateRequestDTO requestDTO) ;
 }

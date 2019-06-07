@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.soar.vote.common.dto.request.FindActivityCandidateRequestDTO;
 import com.soar.vote.common.dto.request.FindVoteActivityRequestDTO;
 import com.soar.vote.common.dto.response.FindActivityCandidateResponseDTO;
+import com.soar.vote.common.dto.response.FindVoteActivityDetailResponseDTO;
 import com.soar.vote.common.dto.response.FindVoteActivityResponseDTO;
 
 /**
@@ -22,7 +23,16 @@ public interface VoteActivityService {
      * @param requestDTO 查询条件
      * @return 投票活动列表
      */
-    PageInfo<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO) throws Exception;
+    PageInfo<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO) ;
+
+    /**
+     * 查询投票活动详情
+     * @author liyifei
+     * @date 5/4/2019
+     * @param activityId 活动编号
+     * @return 投票活动列表
+     */
+    FindVoteActivityDetailResponseDTO find(String activityId) ;
 
     /**
      * 查询活动候选人列表
@@ -31,5 +41,5 @@ public interface VoteActivityService {
      * @param requestDTO 查询条件
      * @return 活动候选人列表
      */
-    PageInfo<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO) throws Exception;
+    PageInfo<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO) ;
 }

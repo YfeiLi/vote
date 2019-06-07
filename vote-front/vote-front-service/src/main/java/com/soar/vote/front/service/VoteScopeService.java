@@ -20,5 +20,5 @@ public interface VoteScopeService {
      * @param requestDTO 查询条件
      * @return 区域列表
      */
-    PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) throws Exception;
+    PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) ;
 }

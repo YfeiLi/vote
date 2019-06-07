@@ -1,5 +1,6 @@
 package com.soar.vote.front.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.soar.vote.common.dto.request.VoteRequestDTO;
 import com.soar.vote.common.dto.request.VoterLoginRequestDTO;
@@ -51,7 +52,7 @@ public class VoterServiceImpl implements VoterService {
     private VoteRecordMapper voteRecordMapper;
 
     @Override
-    public VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) throws Exception {
+    public VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) {
 
         VoterLoginResponseDTO responseDTO = new VoterLoginResponseDTO();
         Date current = new Date();
@@ -64,7 +65,7 @@ public class VoterServiceImpl implements VoterService {
         // 调用微信登录接口
         Map<String,String> wxResult = wxLogin(requestDTO.getJsCode());
         if(wxResult == null){
-            throw new RuntimeException("调用微信登录接口失败");
+            return null;
         }
         String openId = wxResult.get("openid");
         String sessionKey = wxResult.get("session_key");
@@ -114,14 +115,14 @@ public class VoterServiceImpl implements VoterService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public VoteResponseDTO vote(VoteRequestDTO requestDTO) throws Exception {
+    public VoteResponseDTO vote(VoteRequestDTO requestDTO) {
 
         VoteResponseDTO responseDTO = new VoteResponseDTO();
 
         // 校验登录令牌
         VoterSession voterSession = voterSessionMapper.selectByContent(requestDTO.getSession());
         if(voterSession == null){
-            responseDTO.setErrorMsg("登录令牌已失效，请重新登录");
+            responseDTO.setErrorMsg("登录令牌已失效，请重新打开小程序");
             return responseDTO;
         }
         String voterId = voterSession.getVoterId();
@@ -129,13 +130,13 @@ public class VoterServiceImpl implements VoterService {
         // 查询活动
         VoteActivity activity = voteActivityMapper.selectByPrimaryKey(requestDTO.getActivityId());
 
-        // 判断活动是否结束
-        if((System.currentTimeMillis()-1000*60*60*24)>activity.getEndTime().getTime()){
-            responseDTO.setErrorMsg("活动已结束");
-            return responseDTO;
-        }
+        // 判断活动是否在正在进行
         if(System.currentTimeMillis()<activity.getStartTime().getTime()){
             responseDTO.setErrorMsg("活动未开始");
+            return responseDTO;
+        }
+        if((System.currentTimeMillis()-1000*60*60*24)>activity.getEndTime().getTime()){
+            responseDTO.setErrorMsg("活动已结束");
             return responseDTO;
         }
 
@@ -163,22 +164,22 @@ public class VoterServiceImpl implements VoterService {
                 return responseDTO;
             }
 
-            // 查询候选人得票
-            ActivityCandidate activityCandidate = new ActivityCandidate();
-            activityCandidate.setActivityId(requestDTO.getActivityId());
-            activityCandidate.setCandidateId(requestDTO.getCandidateId());
-            activityCandidate = activityCandidateMapper.selectOne(activityCandidate);
-
-            // 修改候选人得票数
-            activityCandidate.setVotes((short)(activityCandidate.getVotes()+1));
-            activityCandidate.setUpdateTime(new Date());
-            activityCandidateMapper.updateByPrimaryKeySelective(activityCandidate);
-
             // 修改投票人剩余票数
             activityVoter.setRestVotes((short)(activityVoter.getRestVotes()-1));
             activityVoter.setUpdateTime(new Date());
             activityVoterMapper.updateByPrimaryKeySelective(activityVoter);
         }
+
+        // 查询候选人得票
+        ActivityCandidate activityCandidate = new ActivityCandidate();
+        activityCandidate.setActivityId(requestDTO.getActivityId());
+        activityCandidate.setCandidateId(requestDTO.getCandidateId());
+        activityCandidate = activityCandidateMapper.selectOne(activityCandidate);
+
+        // 修改候选人得票数
+        activityCandidate.setVotes((short)(activityCandidate.getVotes()+1));
+        activityCandidate.setUpdateTime(new Date());
+        activityCandidateMapper.updateByPrimaryKeySelective(activityCandidate);
 
         // 添加投票记录
         VoteRecord voteRecord = new VoteRecord();
@@ -215,7 +216,7 @@ public class VoterServiceImpl implements VoterService {
         reqMap.put("grant_type",grantType);
         Map<String,Object> resultMap = HttpUtil.httpClientRequest(url,reqMap);
         if(!(boolean) resultMap.get("success")){
-            log.error((String) resultMap.get("msg"));
+            log.error("微信接口调用失败："+new JSONObject(resultMap));
             return null;
         }
 

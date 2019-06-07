@@ -25,28 +25,28 @@ public class VoteScopeController {
     private VoteScopeService voteScopeService;
 
     @PostMapping
-    ResponseEntity<String> add(@RequestBody AddVoteScopeRequestDTO requestDTO) throws Exception {
+    ResponseEntity<String> add(@RequestBody AddVoteScopeRequestDTO requestDTO) {
 
         String scopeId = voteScopeService.add(requestDTO);
         return ResponseEntity.ok(scopeId);
     }
 
     @DeleteMapping("/{scopeId}")
-    ResponseEntity<String> delete(@PathVariable String scopeId) throws Exception {
+    ResponseEntity<String> delete(@PathVariable String scopeId) {
 
         voteScopeService.delete(scopeId);
         return ResponseEntity.ok(scopeId);
     }
 
     @GetMapping
-    ResponseEntity<PageInfo<FindVoteScopeResponseDTO>> find(FindVoteScopeRequestDTO requestDTO) throws Exception {
+    ResponseEntity<PageInfo<FindVoteScopeResponseDTO>> find(FindVoteScopeRequestDTO requestDTO) {
 
         PageInfo<FindVoteScopeResponseDTO> page = voteScopeService.find(requestDTO);
         return ResponseEntity.ok(page);
     }
 
     @PutMapping("/{scopeId}")
-    ResponseEntity<String> update(@PathVariable String scopeId, UpdateVoteScopeRequestDTO requestDTO) throws Exception {
+    ResponseEntity<String> update(@PathVariable String scopeId, UpdateVoteScopeRequestDTO requestDTO) {
 
         voteScopeService.update(scopeId,requestDTO);
         return ResponseEntity.ok(scopeId);

@@ -41,7 +41,7 @@ public interface VoteActivityService {
      * @param requestDTO 查询条件
      * @return 投票活动列表
      */
-    PageInfo<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO) throws Exception;
+    PageInfo<FindVoteActivityResponseDTO> find(FindVoteActivityRequestDTO requestDTO) ;
 
     /**
      * 查询活动候选人列表
@@ -50,5 +50,5 @@ public interface VoteActivityService {
      * @param requestDTO 查询条件
      * @return 活动候选人列表
      */
-    PageInfo<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO) throws Exception;
+    PageInfo<FindActivityCandidateResponseDTO> findCandidate(FindActivityCandidateRequestDTO requestDTO) ;
 }

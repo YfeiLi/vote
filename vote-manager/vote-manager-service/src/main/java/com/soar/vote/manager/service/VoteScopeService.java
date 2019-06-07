@@ -22,7 +22,7 @@ public interface VoteScopeService {
      * @param requestDTO 添加参数
      * @return 区域编号
      */
-    String add(AddVoteScopeRequestDTO requestDTO) throws Exception;
+    String add(AddVoteScopeRequestDTO requestDTO) ;
 
     /**
      * 删除区域
@@ -30,7 +30,7 @@ public interface VoteScopeService {
      * @date 1/4/2019
      * @param scopeId 区域编号
      */
-    void delete(String scopeId) throws Exception;
+    void delete(String scopeId) ;
 
     /**
      * 查询投票区域列表
@@ -39,7 +39,7 @@ public interface VoteScopeService {
      * @param requestDTO 查询条件
      * @return 区域列表
      */
-    PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) throws Exception;
+    PageInfo<FindVoteScopeResponseDTO> find(FindVoteScopeRequestDTO requestDTO) ;
 
     /**
      * 修改区域
@@ -48,5 +48,5 @@ public interface VoteScopeService {
      * @param scopeId 区域编号
      * @param requestDTO 修改参数
      */
-    void update(String scopeId, UpdateVoteScopeRequestDTO requestDTO) throws Exception;
+    void update(String scopeId, UpdateVoteScopeRequestDTO requestDTO) ;
 }

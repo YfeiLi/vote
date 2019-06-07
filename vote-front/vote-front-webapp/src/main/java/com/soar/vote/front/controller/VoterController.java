@@ -28,7 +28,7 @@ public class VoterController {
     private VoterService voterService;
 
     @PostMapping("/login")
-    ResponseEntity<VoterLoginResponseDTO> login(@RequestBody VoterLoginRequestDTO requestDTO) throws Exception{
+    ResponseEntity<VoterLoginResponseDTO> login(@RequestBody VoterLoginRequestDTO requestDTO) {
 
         VoterLoginResponseDTO responseDTO = voterService.login(requestDTO);
         if(responseDTO == null){
@@ -38,10 +38,10 @@ public class VoterController {
     }
 
     @PostMapping("/vote")
-    ResponseEntity<VoteResponseDTO> vote(@RequestBody VoteRequestDTO requestDTO) throws Exception {
+    ResponseEntity<VoteResponseDTO> vote(@RequestBody VoteRequestDTO requestDTO) {
 
-        VoteResponseDTO errorMsg = voterService.vote(requestDTO);
-        return ResponseEntity.ok(errorMsg);
+        VoteResponseDTO responseDTO = voterService.vote(requestDTO);
+        return ResponseEntity.ok(responseDTO);
     }
 
 }
