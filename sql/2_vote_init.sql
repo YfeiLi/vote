@@ -111,7 +111,7 @@ create table coupon_group
 (
   coupon_group_id      varchar(32) not null comment '优惠券组编号',
   coupon_name          varchar(64) comment '优惠券名称',
-  coupon_type          smallint comment '优惠券类型（01折扣；02抵扣）',
+  coupon_type          smallint comment '优惠券类型（1折扣；2抵扣）',
   discount_rate        int comment '折扣率（100即免费）',
   discount_amout       int comment '抵扣金额（单位：分）',
   goods_id             varchar(32) comment '商品编号',
