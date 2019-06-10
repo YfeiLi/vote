@@ -7,8 +7,28 @@
     -->
     <id column="coupon_id" jdbcType="VARCHAR" property="couponId" />
     <result column="voter_id" jdbcType="VARCHAR" property="voterId" />
+    <result column="coupon_group_id" jdbcType="VARCHAR" property="couponGroupId" />
     <result column="coupon_status" jdbcType="SMALLINT" property="couponStatus" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <select id="find" resultType="com.soar.vote.common.dto.response.FindCouponResponseDTO">
+    select
+      c.coupon_id,
+      c.coupon_status,
+      cg.coupon_name,
+      cg.coupon_type,
+      cg.discount_rate,
+      cg.discount_rate,
+      cg.scope_id
+    from coupon c
+    left join coupon_group cg on c.coupon_group_id = cg.coupon_group_id
+    <where>
+      <if test="voterId != null and voterId != ''">
+        c.voter_id = #{voterId}
+      </if>
+    </where>
+  </select>
+
 </mapper>

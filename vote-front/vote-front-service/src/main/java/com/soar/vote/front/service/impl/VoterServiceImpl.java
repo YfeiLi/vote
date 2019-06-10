@@ -1,22 +1,24 @@
 package com.soar.vote.front.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.soar.vote.common.dto.request.ReceiveCouponResponseDTO;
 import com.soar.vote.common.dto.request.VoteRequestDTO;
 import com.soar.vote.common.dto.request.VoterLoginRequestDTO;
 import com.soar.vote.common.dto.response.VoteResponseDTO;
 import com.soar.vote.common.dto.response.VoterLoginResponseDTO;
 import com.soar.vote.common.util.HttpUtil;
 import com.soar.vote.common.util.UUIDUtil;
+import com.soar.vote.front.service.BaseCouponReceiver;
+import com.soar.vote.front.service.VoterService;
 import com.soar.vote.persistence.entity.*;
 import com.soar.vote.persistence.mapper.*;
-import com.soar.vote.front.service.VoterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,6 +52,9 @@ public class VoterServiceImpl implements VoterService {
 
     @Autowired
     private VoteRecordMapper voteRecordMapper;
+
+    @Resource(name = "firstVoteCouponReceiver")
+     private BaseCouponReceiver firstVoteCouponReceiver;
 
     @Override
     public VoterLoginResponseDTO login(VoterLoginRequestDTO requestDTO) {
@@ -190,6 +195,17 @@ public class VoterServiceImpl implements VoterService {
         voteRecord.setCreatTime(new Date());
         voteRecord.setUpdateTime(new Date());
         voteRecordMapper.insertSelective(voteRecord);
+
+        // 领取优惠券
+        ReceiveCouponResponseDTO receiveCouponResponseDTO;
+        try{
+            receiveCouponResponseDTO = firstVoteCouponReceiver.handle(voterId);
+            if(receiveCouponResponseDTO.getSuccess()){
+                responseDTO.setCouponId(receiveCouponResponseDTO.getCouponId());
+            }
+        } catch (Exception e){
+            log.error("领取优惠券未知异常",e);
+        }
 
         // 返回成功
         return responseDTO;

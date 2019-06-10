@@ -54,6 +54,12 @@ public class CouponGroup {
     private Short scene;
 
     /**
+     * 优惠券券组状态（0停用；1启用）
+     */
+    @Column(name = "coupon_group_status")
+    private Short couponGroupStatus;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")
@@ -207,6 +213,24 @@ public class CouponGroup {
      */
     public void setScene(Short scene) {
         this.scene = scene;
+    }
+
+    /**
+     * 获取优惠券券组状态（0停用；1启用）
+     *
+     * @return coupon_group_status - 优惠券券组状态（0停用；1启用）
+     */
+    public Short getCouponGroupStatus() {
+        return couponGroupStatus;
+    }
+
+    /**
+     * 设置优惠券券组状态（0停用；1启用）
+     *
+     * @param couponGroupStatus 优惠券券组状态（0停用；1启用）
+     */
+    public void setCouponGroupStatus(Short couponGroupStatus) {
+        this.couponGroupStatus = couponGroupStatus;
     }
 
     /**

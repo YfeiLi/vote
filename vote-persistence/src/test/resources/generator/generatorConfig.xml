@@ -29,8 +29,8 @@
         <!-- sql占位符，表示所有的表 -->
         <!--<table tableName="%">-->
 
-        <table tableName="candidate" enableSelectByExample="false"/>
-        <!--<table tableName="vote_activity" enableSelectByExample="false"/>
+        <!--<table tableName="candidate" enableSelectByExample="false"/>
+        <table tableName="vote_activity" enableSelectByExample="false"/>
         <table tableName="vote_record" enableSelectByExample="false"/>
         <table tableName="activity_voter" enableSelectByExample="false"/>
         <table tableName="vote_scope" enableSelectByExample="false"/>
@@ -42,6 +42,8 @@
         <table tableName="voter" enableSelectByExample="false"/>
         <table tableName="base_config" enableSelectByExample="false"/>
         <table tableName="voter_session" enableSelectByExample="false"/>-->
+        <table tableName="coupon_group" enableSelectByExample="false"/>
+        <table tableName="coupon" enableSelectByExample="false"/>
 
     </context>
 </generatorConfiguration>

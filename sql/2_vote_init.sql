@@ -95,7 +95,8 @@ create table coupon
 (
   coupon_id            varchar(32) not null comment '优惠券编号',
   voter_id             varchar(32) comment '投票人编号',
-  coupon_status        smallint comment '优惠券状态',
+  coupon_group_id      varchar(32) comment '优惠券组编号',
+  coupon_status        smallint comment '优惠券状态（0未使用；1已使用；2已禁用；3已过期）',
   create_time          datetime comment '创建时间',
   update_time          datetime comment '更新时间',
   primary key (coupon_id)
@@ -116,6 +117,7 @@ create table coupon_group
   goods_id             varchar(32) comment '商品编号',
   scope_id             varchar(32) comment '区域编号',
   scene                smallint comment '领取场景',
+  coupon_group_status  smallint comment '优惠券券组状态（0停用；1启用）',
   create_time          datetime comment '创建时间',
   update_time          datetime comment '更新时间',
   primary key (coupon_group_id)

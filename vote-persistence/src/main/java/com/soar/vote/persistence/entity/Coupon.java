@@ -19,7 +19,13 @@ public class Coupon {
     private String voterId;
 
     /**
-     * 优惠券状态
+     * 优惠券组编号
+     */
+    @Column(name = "coupon_group_id")
+    private String couponGroupId;
+
+    /**
+     * 优惠券状态（0未使用；1已使用；2已禁用；3已过期）
      */
     @Column(name = "coupon_status")
     private Short couponStatus;
@@ -73,18 +79,36 @@ public class Coupon {
     }
 
     /**
-     * 获取优惠券状态
+     * 获取优惠券组编号
      *
-     * @return coupon_status - 优惠券状态
+     * @return coupon_group_id - 优惠券组编号
+     */
+    public String getCouponGroupId() {
+        return couponGroupId;
+    }
+
+    /**
+     * 设置优惠券组编号
+     *
+     * @param couponGroupId 优惠券组编号
+     */
+    public void setCouponGroupId(String couponGroupId) {
+        this.couponGroupId = couponGroupId;
+    }
+
+    /**
+     * 获取优惠券状态（0未使用；1已使用；2已禁用；3已过期）
+     *
+     * @return coupon_status - 优惠券状态（0未使用；1已使用；2已禁用；3已过期）
      */
     public Short getCouponStatus() {
         return couponStatus;
     }
 
     /**
-     * 设置优惠券状态
+     * 设置优惠券状态（0未使用；1已使用；2已禁用；3已过期）
      *
-     * @param couponStatus 优惠券状态
+     * @param couponStatus 优惠券状态（0未使用；1已使用；2已禁用；3已过期）
      */
     public void setCouponStatus(Short couponStatus) {
         this.couponStatus = couponStatus;
