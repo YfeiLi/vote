@@ -3,7 +3,10 @@ package com.soar.vote.front.controller;
 import com.github.pagehelper.PageInfo;
 import com.soar.vote.common.dto.request.FindCouponRequestDTO;
 import com.soar.vote.common.dto.response.FindCouponResponseDTO;
+import com.soar.vote.front.service.CouponService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,9 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CouponController {
 
+    @Autowired
+    private CouponService couponService;
+
+    @GetMapping
     ResponseEntity<PageInfo<FindCouponResponseDTO>> find(FindCouponRequestDTO requestDTO){
 
-        return null;
+        PageInfo<FindCouponResponseDTO> page = couponService.find(requestDTO);
+        return ResponseEntity.ok(page);
     }
 
 }

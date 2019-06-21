@@ -14,14 +14,25 @@ import java.io.Serializable;
 public class FindCouponRequestDTO extends PageRequestDTO implements Serializable {
     private static final long serialVersionUID = -8027612220450340647L;
 
-    /** 投票人编号 */
-    private String voterId;
+    /** 登录标识 */
+    private String session;
 
-    public String getVoterId() {
-        return voterId;
+    /** 区域编号 */
+    private String scopeId;
+
+    public String getSession() {
+        return session;
     }
 
-    public void setVoterId(String voterId) {
-        this.voterId = voterId;
+    public void setSession(String session) {
+        this.session = session;
+    }
+
+    public String getScopeId() {
+        return scopeId;
+    }
+
+    public void setScopeId(String scopeId) {
+        this.scopeId = scopeId;
     }
 }

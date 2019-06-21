@@ -96,8 +96,4 @@ public class Base64PicUtil {
         return DatatypeConverter.printBase64Binary(bytes);
     }
 
-    public static Map<String,Short> getWidthAndHeight(String base64){
-
-        return null;
-    }
 }

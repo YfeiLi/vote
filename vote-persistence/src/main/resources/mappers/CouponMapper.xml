@@ -16,19 +16,16 @@
   <select id="find" resultType="com.soar.vote.common.dto.response.FindCouponResponseDTO">
     select
       c.coupon_id,
-      c.coupon_status,
       cg.coupon_name,
       cg.coupon_type,
       cg.discount_rate,
-      cg.discount_rate,
-      cg.scope_id
+      cg.discount_amout
     from coupon c
-    left join coupon_group cg on c.coupon_group_id = cg.coupon_group_id
-    <where>
-      <if test="voterId != null and voterId != ''">
-        c.voter_id = #{voterId}
-      </if>
-    </where>
+      left join coupon_group cg on cg.coupon_group_id = c.coupon_group_id
+    where voter_id = #{voterId}
+          and c.coupon_status = 0
+          and cg.coupon_group_status = 1
+          and find_in_set(cg.scope_id,queryParentScopeRecursive(#{scopeId}));
   </select>
 
 </mapper>

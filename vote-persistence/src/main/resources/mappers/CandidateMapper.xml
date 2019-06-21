@@ -40,6 +40,6 @@
     select
       *
     from candidate
-    where find_in_set(scope_id,queryScopeRecursive(#{scopeId}))
+    where find_in_set(scope_id,queryChildScopeRecursive(#{scopeId}))
   </select>
 </mapper>
