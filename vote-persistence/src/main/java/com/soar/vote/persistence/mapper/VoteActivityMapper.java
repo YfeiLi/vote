@@ -14,7 +14,7 @@ public interface VoteActivityMapper extends Mapper<VoteActivity> {
     /**
      * 查询投票活动列表
      * @author liyifei
-     * @date 5/4/2019
+     * @since 5/4/2019
      * @param requestDTO 查询条件
      * @return 活动列表
      */
@@ -23,7 +23,7 @@ public interface VoteActivityMapper extends Mapper<VoteActivity> {
     /**
      * 查询活动候选人
      * @author liyifei
-     * @date 3/5/2019
+     * @since 3/5/2019
      * @param requestDTO 查询条件
      * @return 候选人列表
      */

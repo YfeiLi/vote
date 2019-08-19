@@ -17,7 +17,7 @@ public interface VoterService {
     /**
      * 投票人登录
      * @author liyifei
-     * @date 7/4/2019
+     * @since 7/4/2019
      * @param requestDTO 登录参数
      * @return 登录令牌
      */
@@ -26,7 +26,7 @@ public interface VoterService {
     /**
      * 投票
      * @author liyifei
-     * @date 7/4/2019
+     * @since 7/4/2019
      * @return 错误信息
      */
     VoteResponseDTO vote(VoteRequestDTO requestDTO) ;

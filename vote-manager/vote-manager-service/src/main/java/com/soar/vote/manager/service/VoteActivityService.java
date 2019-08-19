@@ -19,7 +19,7 @@ public interface VoteActivityService {
     /**
      * 添加投票活动
      * @author liyifei
-     * @date 5/4/2019
+     * @since 5/4/2019
      * @param requestDTO 添加内容
      * @return 活动编号
      */
@@ -28,7 +28,7 @@ public interface VoteActivityService {
     /**
      * 删除投票活动
      * @author liyifei
-     * @date 6/4/2019
+     * @since 6/4/2019
      * @param activityId 活动编号
      * @return 活动编号
      */
@@ -37,7 +37,7 @@ public interface VoteActivityService {
     /**
      * 查询投票活动列表
      * @author liyifei
-     * @date 5/4/2019
+     * @since 5/4/2019
      * @param requestDTO 查询条件
      * @return 投票活动列表
      */
@@ -46,7 +46,7 @@ public interface VoteActivityService {
     /**
      * 查询活动候选人列表
      * @author liyifei
-     * @date 6/4/2019
+     * @since 6/4/2019
      * @param requestDTO 查询条件
      * @return 活动候选人列表
      */

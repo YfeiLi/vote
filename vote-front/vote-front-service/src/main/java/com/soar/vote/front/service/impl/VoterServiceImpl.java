@@ -214,7 +214,7 @@ public class VoterServiceImpl implements VoterService {
     /**
      * 微信登录接口
      * @author liyifei
-     * @date 7/4/2019
+     * @since 7/4/2019
      * @param jsCode js登录码
      * @return 微信登录结果
      */

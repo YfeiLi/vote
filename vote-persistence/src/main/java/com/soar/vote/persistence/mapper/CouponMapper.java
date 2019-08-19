@@ -11,7 +11,7 @@ public interface CouponMapper extends Mapper<Coupon> {
     /**
      * 查询投票人优惠券
      * @author liyifei
-     * @date 21/6/2019
+     * @since 21/6/2019
      * @param voterId 投票人编号
      * @param scopeId 区域编号
      * @return

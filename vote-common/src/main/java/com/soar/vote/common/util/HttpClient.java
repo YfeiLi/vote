@@ -462,7 +462,7 @@ public class HttpClient
      * (C) Copyright of China UnionPay Co., Ltd. 2010.
      *
      * @author ZERO
-     * @date 2012-8-15
+     * @since 2012-8-15
      */
     // public class BaseHttpSSLSocketFactory extends SSLSocketFactory {
     // private SSLContext getSSLContext() {

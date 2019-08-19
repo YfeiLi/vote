@@ -15,7 +15,7 @@ public interface CouponService {
     /**
      * 查询优惠券
      * @author liyifei
-     * @date 9/6/2019
+     * @since 9/6/2019
      * @param requestDTO 查询条件
      * @return 优惠券列表
      */

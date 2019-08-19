@@ -12,7 +12,7 @@ public interface VoteScopeMapper extends Mapper<VoteScope> {
     /**
      * 查询区域列表
      * @author liyifei
-     * @date 31/3/2019
+     * @since 31/3/2019
      * @param requestDTO 查询条件
      * @return 区域列表
      */

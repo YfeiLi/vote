@@ -31,7 +31,7 @@ public abstract class BaseCouponReceiver {
     /**
      * 领取优惠券
      * @author liyifei
-     * @date 9/6/2019
+     * @since 9/6/2019
      * @param voteId 投票人编号
      * @return 领取结果
      */
@@ -77,7 +77,7 @@ public abstract class BaseCouponReceiver {
     /**
      * 获取优惠券场景
      * @author liyifei
-     * @date 9/6/2019
+     * @since 9/6/2019
      * @return 优惠券场景
      */
     protected abstract CouponScenceEnum getCouponScence();
@@ -85,7 +85,7 @@ public abstract class BaseCouponReceiver {
     /**
      * 判断用户能否领取
      * @author liyifei
-     * @date 9/6/2019
+     * @since 9/6/2019
      * @param voteId 投票人编号
      * @return 错误信息（null表示可以领取）
      */

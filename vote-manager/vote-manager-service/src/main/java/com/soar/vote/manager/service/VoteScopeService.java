@@ -18,7 +18,7 @@ public interface VoteScopeService {
     /**
      * 添加区域
      * @author liyifei
-     * @date 2/4/2019
+     * @since 2/4/2019
      * @param requestDTO 添加参数
      * @return 区域编号
      */
@@ -27,7 +27,7 @@ public interface VoteScopeService {
     /**
      * 删除区域
      * @author liyifei
-     * @date 1/4/2019
+     * @since 1/4/2019
      * @param scopeId 区域编号
      */
     void delete(String scopeId) ;
@@ -35,7 +35,7 @@ public interface VoteScopeService {
     /**
      * 查询投票区域列表
      * @author liyifei
-     * @date 31/3/2019
+     * @since 31/3/2019
      * @param requestDTO 查询条件
      * @return 区域列表
      */
@@ -44,7 +44,7 @@ public interface VoteScopeService {
     /**
      * 修改区域
      * @author liyifei
-     * @date 1/4/2019
+     * @since 1/4/2019
      * @param scopeId 区域编号
      * @param requestDTO 修改参数
      */

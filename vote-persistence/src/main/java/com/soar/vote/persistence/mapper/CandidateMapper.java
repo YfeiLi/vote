@@ -13,7 +13,7 @@ public interface CandidateMapper extends Mapper<Candidate> {
     /**
      * 查询候选人列表
      * @author liyifei
-     * @date 3/4/2019
+     * @since 3/4/2019
      * @param requestDTO 查询条件
      * @return 候选人列表
      */

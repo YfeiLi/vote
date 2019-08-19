@@ -19,7 +19,7 @@ public interface CandidateService {
     /**
      * 新增候选人
      * @author liyifei
-     * @date 3/4/2019
+     * @since 3/4/2019
      * @param requestDTO 新增内容
      * @return 候选人编号
      */
@@ -28,7 +28,7 @@ public interface CandidateService {
     /**
      * 删除候选人
      * @author liyifei
-     * @date 3/4/2019
+     * @since 3/4/2019
      * @param candidateId 候选人编号
      */
     void delete(String candidateId) ;
@@ -36,7 +36,7 @@ public interface CandidateService {
     /**
      * 查询候选人列表
      * @author liyifei
-     * @date 4/4/2019
+     * @since 4/4/2019
      * @param requestDTO 查询条件
      * @return 候选人列表
      */
@@ -45,7 +45,7 @@ public interface CandidateService {
     /**
      * 查询候选人详情
      * @author liyifei
-     * @date 4/4/2019
+     * @since 4/4/2019
      * @param candidateId 候选人编号
      * @return 候选人
      */
@@ -54,9 +54,9 @@ public interface CandidateService {
     /**
      * 修改候选人
      * @author liyifei
-     * @date 4/4/2019
+     * @since 4/4/2019
      * @author liyifei
-     * @date 3/4/2019
+     * @since 3/4/2019
      * @param candidateId 候选人编号
      * @param requestDTO 修改内容
      */
