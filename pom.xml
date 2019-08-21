@@ -79,6 +79,10 @@
     <build>
         <plugins>
             <plugin>
+                <!-- example: The current version is "1.0-SNAPSHOT" -->
+                <!-- stage1: mvn release:branch -DbranchName=v1.0.x (The new deployment version is "1.1-SNAPSHOT") -->
+                <!-- stage2: mvn release:prepare (The new deployment version is "1.0.1-SNAPSHOT") -->
+                <!-- stage3: mvn release:perform -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
