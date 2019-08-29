@@ -11,7 +11,7 @@ layui.use(['table','form','element','jquery'], function(){
     table.render({
         id: 'candidateList'
         ,elem: '#candidateList'
-        ,url: 'https://www.yfei.site/vote/manager/api/candidate'
+        ,url: 'https://www.yfeili.cn/vote/manager/api/candidate'
         ,height: 'full-100'
         ,where: {
             scopeId: scopeId
@@ -66,7 +66,7 @@ layui.use(['table','form','element','jquery'], function(){
                 layer.close(index);
                 //向服务端发送删除指令
                 $.ajax({
-                    url:'https://www.yfei.site/vote/manager/api/candidate/'+data.candidateId,
+                    url:'https://www.yfeili.cn/vote/manager/api/candidate/'+data.candidateId,
                     type:'delete',
                     success:function () {
                         table.reload('candidateList');

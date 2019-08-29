@@ -10,7 +10,7 @@ layui.use(['form','element','jquery','laydate'], function(){
     form.on('submit(add)',function(data){
         var params = JSON.stringify(data.field);
         $.ajax({
-            url: "https://www.yfei.site/vote/manager/api/activity",
+            url: "https://www.yfeili.cn/vote/manager/api/activity",
             type: 'post',
             contentType: 'application/json',
             data: params,
@@ -75,7 +75,7 @@ layui.use(['form','element','jquery','laydate'], function(){
         } else{
             $('#scopeId').val('');
             $.ajax({
-                url: 'https://www.yfei.site/vote/manager/api/scope',
+                url: 'https://www.yfeili.cn/vote/manager/api/scope',
                 type: 'get',
                 data:{scopeLevel:3,scopeParent:province},
                 success: function(data){

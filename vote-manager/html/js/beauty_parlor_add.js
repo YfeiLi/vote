@@ -8,7 +8,7 @@ layui.use(['form','element','jquery'], function(){
     form.on('submit(add)',function(data){
         var params = JSON.stringify(data.field);
         $.ajax({
-            url: "https://www.yfei.site/vote/manager/api/scope",
+            url: "https://www.yfeili.cn/vote/manager/api/scope",
             type: 'post',
             contentType: 'application/json',
             data: params,

@@ -9,7 +9,7 @@ layui.use(['form','element','jquery','upload'], function(){
 
     // 查询
     $.ajax({
-        url: 'https://www.yfei.site/vote/manager/api/candidate/'+GetQueryString('candidateId'),
+        url: 'https://www.yfeili.cn/vote/manager/api/candidate/'+GetQueryString('candidateId'),
         type: 'get',
         success:function (result) {
             $('#thumbnail').attr('src',result.photoUrl);
@@ -25,7 +25,7 @@ layui.use(['form','element','jquery','upload'], function(){
     form.on('submit(edit)',function(data){
         var params = data.field;
         $.ajax({
-            url: "https://www.yfei.site/vote/manager/api/candidate/"+GetQueryString('candidateId'),
+            url: "https://www.yfeili.cn/vote/manager/api/candidate/"+GetQueryString('candidateId'),
             type: 'put',
             data: params,
             success: function(data){

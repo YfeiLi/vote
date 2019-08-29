@@ -9,7 +9,7 @@ layui.use(['table','form','element','jquery'], function(){
     table.render({
         id: 'scopeList'
         ,elem: '#scopeList'
-        ,url: 'https://www.yfei.site/vote/manager/api/scope'
+        ,url: 'https://www.yfeili.cn/vote/manager/api/scope'
         ,height: 'full-180'
         ,where: {
             scopeLevel: 3
@@ -43,7 +43,7 @@ layui.use(['table','form','element','jquery'], function(){
             ,data = obj.data //得到所在行所有键值
             ,field = obj.field; //得到字段
         $.ajax({
-            url:'https://www.yfei.site/vote/manager/api/scope/'+data.scopeId,
+            url:'https://www.yfeili.cn/vote/manager/api/scope/'+data.scopeId,
             type:'put',
             data:data,
             success:function(){
@@ -65,7 +65,7 @@ layui.use(['table','form','element','jquery'], function(){
                 layer.close(index);
                 //向服务端发送删除指令
                 $.ajax({
-                    url:'https://www.yfei.site/vote/manager/api/scope/'+data.scopeId,
+                    url:'https://www.yfeili.cn/vote/manager/api/scope/'+data.scopeId,
                     type:'delete',
                     success:function () {
                         table.reload('scopeList');

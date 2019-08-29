@@ -11,7 +11,7 @@ layui.use(['table','form','element','jquery'], function(){
     table.render({
         id: 'candidateList'
         ,elem: '#candidateList'
-        ,url: 'https://www.yfei.site/vote/manager/api/activity/candidate'
+        ,url: 'https://www.yfeili.cn/vote/manager/api/activity/candidate'
         ,height: 'full-100'
         ,where: {
             activityId: activityId
