@@ -145,7 +145,7 @@ public class VoterServiceImpl implements VoterService {
             return responseDTO;
         }
 
-        // 判断投票人是否投过票
+        // 判断投票人是否投过票（当前活动）
         ActivityVoter activityVoterSelectParams = new ActivityVoter();
         activityVoterSelectParams.setVoterId(voterId);
         activityVoterSelectParams.setActivityId(requestDTO.getActivityId());
@@ -159,9 +159,6 @@ public class VoterServiceImpl implements VoterService {
             activityVoter.setRestVotes((short)(activity.getMaxVotes()-1));
             activityVoter.setCreateTime(new Date());
             activityVoterMapper.insertSelective(activityVoter);
-
-            // 赠送优惠券
-            responseDTO.setCouponId(String.valueOf(System.currentTimeMillis()));
         } else{
             // 判断投票人是否有剩余票数
             if(activityVoter.getRestVotes() <= 0){
@@ -173,6 +170,14 @@ public class VoterServiceImpl implements VoterService {
             activityVoter.setRestVotes((short)(activityVoter.getRestVotes()-1));
             activityVoter.setUpdateTime(new Date());
             activityVoterMapper.updateByPrimaryKeySelective(activityVoter);
+        }
+
+        // 判断投票人是否投过票（全部活动）
+        activityVoterSelectParams = new ActivityVoter();
+        activityVoterSelectParams.setVoterId(voterId);
+        if(activityVoterMapper.selectCount(activityVoterSelectParams) == 0){
+            // 第一次投票，赠送优惠券
+            responseDTO.setCouponId(String.valueOf(System.currentTimeMillis()));
         }
 
         // 查询候选人得票

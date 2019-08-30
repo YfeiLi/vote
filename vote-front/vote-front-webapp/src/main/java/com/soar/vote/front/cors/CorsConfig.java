@@ -9,17 +9,17 @@ import org.springframework.web.filter.CorsFilter;
 /**
  * 跨域配置
  *
- * @author : xuxuanjie@weconex.com
- * @since : 2019-03-22 00:02
+ * @author liyifei
+ * @since 2019-03-22 00:02
  */
 @Configuration
 public class CorsConfig {
 
     private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("*"); // 1
-        corsConfiguration.addAllowedHeader("*"); // 2
-        corsConfiguration.addAllowedMethod("*"); // 3
+        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedMethod("*");
         return corsConfiguration;
     }
 
