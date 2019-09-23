@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import tk.mybatis.mapper.mapperhelper.MapperHelper;
-import tk.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScan;
 
 import javax.sql.DataSource;
 import java.io.IOException;
